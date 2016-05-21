@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.IntSummaryStatistics;
 import java.util.List;
+import java.util.LongSummaryStatistics;
 import java.util.Random;
 import java.util.stream.Collectors;
 
@@ -30,7 +31,7 @@ public class StreamJDK8 {
 		 */
 		
 		/**
-		 * 序列化元素  :一个流提供一系列特定类型的元素序列.一个流能够得到和估算所需要的元素,兵器从不存储
+		 * 序列化元素  :一个流提供一系列特定类型的元素序列.一个流能够得到和估算所需要的元素,并且从不存储
 		 * 
 		 * 源头: 流需要集合,数组,io资源进行输入
 		 * 
@@ -55,7 +56,7 @@ public class StreamJDK8 {
 		 */
 		
 		/**
-		 * map:The ‘map’ method is used to map each element to its corresponding result. The following code segment prints unique squares of numbers using map.
+		 * map:The 'map' method is used to map each element to its corresponding result. The following code segment prints unique squares of numbers using map.
 
 			map表示每个元素映射到相应的结果.
 			demo:唯一的数字方块
@@ -147,23 +148,23 @@ public class StreamJDK8 {
 	      System.out.println("Using Java 8: ");
 	      System.out.println("List: " +strings);
 			
-	      count = strings.stream().filter(string->string.isEmpty()).count();
+	      count = strings.stream().filter(string->string.isEmpty()).count();//stream进行流过滤,需要用count方法拿出个数
 	      System.out.println("Empty Strings: " + count);
 			
-	      count = strings.stream().filter(string -> string.length() == 3).count();
+	      count = strings.stream().filter(string -> string.length() == 3).count();//得出长度是3的
 	      System.out.println("Strings of length 3: " + count);
 			
-	      filtered = strings.stream().filter(string ->!string.isEmpty()).collect(Collectors.toList());
+	      filtered = strings.stream().filter(string ->!string.isEmpty()).collect(Collectors.toList());//拿出不为空的集合
 	      System.out.println("Filtered List: " + filtered);
 			
-	      mergedString = strings.stream().filter(string ->!string.isEmpty()).collect(Collectors.joining(", "));
+	      mergedString = strings.stream().filter(string ->!string.isEmpty()).collect(Collectors.joining("--"));
 	      System.out.println("Merged String: " + mergedString);
 			
 	      squaresList = numbers.stream().map( i ->i*i).distinct().collect(Collectors.toList());
 	      System.out.println("Squares List: " + squaresList);
 	      System.out.println("List: " +integers);
 			
-	      IntSummaryStatistics stats = integers.stream().mapToInt((x) ->x).summaryStatistics();
+	      LongSummaryStatistics stats = integers.stream().mapToLong((x) ->x).summaryStatistics();
 			
 	      System.out.println("Highest number in List : " + stats.getMax());
 	      System.out.println("Lowest number in List : " + stats.getMin());
@@ -171,7 +172,7 @@ public class StreamJDK8 {
 	      System.out.println("Average of all numbers : " + stats.getAverage());
 	      System.out.println("Random Numbers: ");
 			
-	      random.ints().limit(10).sorted().forEach(System.out::println);
+	      random.longs().limit(10).sorted().forEach(System.out::println);
 			
 	      //parallel processing
 	      count = strings.parallelStream().filter(string -> string.isEmpty()).count();
