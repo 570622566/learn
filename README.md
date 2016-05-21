@@ -100,4 +100,28 @@
 			System.out.println("Average of all numbers : " + stats.getAverage());
 		 * 
 		 */
- 
+ 	
+ 		/**
+		 * 传统的java.util.date是非线程安全的,开发人员使用的时候,必须使用并发处理问题
+		 */
+		
+		/**
+		 * Difficult time zone handling − Developers had to write a lot of code to deal with 			timezone issues. 
+		 * The new API has been developed keeping domain-specific design in mind.
+		 * 开发人员必须编写大量的代码来处理时间问题
+		 * 
+		 * Java 8 introduces a new date-time API under the package java.time. Following are 			some of the important classes introduced in java.time package 
+		 * java.time
+		 */
+ 		
+ 		/*
+		 * With Java 8, Base64 has finally got its due. Java 8 now has inbuilt encoder and decoder for Base64 			encoding.
+		 *  In Java 8, we can use three types of Base64 encoding −
+		 * 
+		 * 
+		 * Simple − Output is mapped to a set of characters lying in A-Za-z0-9+/. The encoder does not add any 			line feed in output, and the decoder rejects any character other than A-Za-z0-9+/.
+
+			URL − Output is mapped to set of characters lying in A-Za-z0-9+_. Output is URL and filename safe.
+
+			MIME − Output is mapped to MIME friendly format. Output is represented in lines of no more than 76 characters 			each, and uses a carriage return '\r' followed by a linefeed '\n' as the line separator. No line separator is 			present to the end of the encoded output.
+		 */
