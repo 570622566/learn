@@ -2,15 +2,18 @@ package test.com.mina2;
 
 import org.apache.mina.core.service.IoHandlerAdapter;
 import org.apache.mina.core.session.IoSession;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class ServerHandler extends IoHandlerAdapter {
-
-	/* (non-Javadoc)
+	
+	 private final static Logger log = LoggerFactory  
+	            .getLogger(ServerHandler.class);
+	/* 
 	 连接创建事件 
 	 */
 	@Override
 	public void sessionCreated(IoSession session) throws Exception {
-		
         // 显示客户端的ip和端口  
 		System.out.println(session.getRemoteAddress().toString());
 	}
@@ -41,10 +44,12 @@ public class ServerHandler extends IoHandlerAdapter {
 	            return;  
 	        }  
 	        // 返回消息字符串  
-	        session.write("Hi Client!");  
+	        //session.write("Hi Client!");  
 	        // 打印客户端传来的消息内容  
 	        System.out.println("Message written..." + str);  
-	        
+	        String ip = session.getRemoteAddress().toString();  
+	        log.info("===> Message From " + ip + " : " + message);
+	        System.out.println("===> Message From " + ip + " : " + message);
 	        
 	    } 
 	

@@ -31,9 +31,9 @@ public class MinaClient {
         // 等待连接创建完成  
         cf.awaitUninterruptibly();  
         // 发送消息  
-    //    cf.getSession().write("Hi Server!");  
+        cf.getSession().write("Hi Server!");  
         // 发送消息  
-        cf.getSession().write("quit"); 
+       // cf.getSession().write("quit"); 
      // 等待连接断开  
         cf.getSession().getCloseFuture().awaitUninterruptibly();  
         // 释放连接  
