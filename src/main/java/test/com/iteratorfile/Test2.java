@@ -86,6 +86,7 @@ public class Test2 {
 			json.put("platformVersion", "1.0.1");
 			json.put("list", jsonArray);
 			responseDetailsJson.put(path, json);
+			
 
 		System.out.println(responseDetailsJson.toJSONString());
 
