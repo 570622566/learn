@@ -56,7 +56,7 @@ public class MinaServer {
         heartBeat.setForwardEvent(true);  
         //设置心跳频率  
         heartBeat.setRequestInterval(HEARTBEATRATE);  // 本服务器为被定型心跳  即需要每10秒接受一个心跳请求  否则该连接进入空闲状态 并且发出idled方法回调
-        
+        heartBeat.setRequestTimeout(120);
         acceptor.getFilterChain().addLast("heartbeat", heartBeat);  
 
         // 指定业务逻辑处理器  
@@ -65,7 +65,6 @@ public class MinaServer {
         acceptor.setDefaultLocalAddress(new InetSocketAddress(PORT));  
         // 启动监听线程  
         acceptor.bind();  
-        
         System.out.println("Server started on port： " + PORT);  
 
 	}
@@ -82,7 +81,7 @@ public class MinaServer {
 private static   class KeepAliveMessageFactoryImpl implements KeepAliveMessageFactory {
     	
     	@Override
-    	public boolean isRequest(IoSession session, Object message) {//2
+    	public boolean isRequest(IoSession session, Object message) {//2  判断是否心跳请求包  是的话返回true 
     		System.out.println("isRequest:"+message);
     		// TODO Auto-generated method stub
     		if(message.equals(HEARTBEATREQUEST)){
@@ -95,7 +94,7 @@ private static   class KeepAliveMessageFactoryImpl implements KeepAliveMessageFa
     	}
     	
     	@Override
-    	public boolean isResponse(IoSession session, Object message) {//3
+    	public boolean isResponse(IoSession session, Object message) {//3  由于被动型心跳机制，没有请求当然也就不关注反馈 因此直接返回false
     		// TODO Auto-generated method stub
     		System.out.println("isResponse:"+message);
     		if(message.equals(HEARTBEATRESPONSE)){
@@ -107,7 +106,7 @@ private static   class KeepAliveMessageFactoryImpl implements KeepAliveMessageFa
     	}
     	
     	@Override
-    	public Object getRequest(IoSession session) { //1
+    	public Object getRequest(IoSession session) { //1  被动型心跳机制无请求  因此直接返回null
     		// TODO Auto-generated method stub
     		System.out.println("getRequest");
             LOG.info("请求预设信息: " + HEARTBEATREQUEST);  
@@ -116,7 +115,7 @@ private static   class KeepAliveMessageFactoryImpl implements KeepAliveMessageFa
     	}
     	
     	@Override
-    	public Object getResponse(IoSession session, Object request) {//4
+    	public Object getResponse(IoSession session, Object request) {//4   根据心跳请求request 反回一个心跳反馈消息 non-nul 
     		System.out.println("getResponse");
     	    LOG.info("响应预设信息: " + HEARTBEATRESPONSE);  
             /** 返回预设语句 */  

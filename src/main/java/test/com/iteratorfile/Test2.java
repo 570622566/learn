@@ -15,6 +15,7 @@ import com.alibaba.fastjson.JSONObject;
 public class Test2 {
 
 	public static void main(String[] args) throws Exception {
+		String rootPath = "E:";
 		String path = "E:/release";
 		List<File> allList = new ArrayList<File>();
 		LinkedList<File> list = new LinkedList<File>();
@@ -52,7 +53,6 @@ public class Test2 {
 			}
 		}
 
-		JSONObject responseDetailsJson = new JSONObject();
 		JSONArray jsonArray = new JSONArray();
 
 		List<OutFileTreeNode> outFileTreeNodeList = new ArrayList<OutFileTreeNode>();
@@ -61,9 +61,9 @@ public class Test2 {
 			
 			int id = f.getPath().split("\\\\").length - dir.getPath().split("\\\\").length;
 			node.setId(id);
-			node.setFileName(f.getPath());
-			node.setParent(f.getParent());
-			int pid = f.getParentFile().getPath().split("\\\\").length - dir.getPath().split("\\\\").length;
+			node.setFileName(f.getPath().replace(rootPath, ""));
+			node.setParent(f.getParent().replace(rootPath, ""));
+			int pid = f.getParentFile().getPath().replace(rootPath, "").split("\\\\").length - dir.getPath().replace(rootPath, "").split("\\\\").length;
 			node.setPid(pid);
 			FileInputStream fis = new FileInputStream(f);
 			String md5 = org.apache.commons.codec.digest.DigestUtils.md5Hex(fis);
@@ -85,12 +85,11 @@ public class Test2 {
 					jsonArray.add(JSON.toJSON(node));
 			}
 			JSONObject json = new JSONObject();
+			json.put("namespace", path.replace(rootPath, ""));
 			json.put("platformVersion", "1.0.1");
 			json.put("list", jsonArray);
-			responseDetailsJson.put(path, json);
 			
-
-		System.out.println(responseDetailsJson.toJSONString());
+		System.out.println(json.toJSONString());
 		
 		 File outFile = new File(path+"/newFile.json");
 		  try (FileOutputStream fop = new FileOutputStream(outFile)) {
@@ -99,7 +98,7 @@ public class Test2 {
 			   outFile.createNewFile();
 		   }
 		   // get the content in bytes
-		   byte[] contentInBytes = responseDetailsJson.toJSONString().getBytes();
+		   byte[] contentInBytes = json.toJSONString().getBytes();
 		   fop.write(contentInBytes);
 		   fop.flush();
 		   fop.close();
