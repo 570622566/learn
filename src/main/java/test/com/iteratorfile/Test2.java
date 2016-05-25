@@ -2,6 +2,8 @@ package test.com.iteratorfile;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -13,7 +15,7 @@ import com.alibaba.fastjson.JSONObject;
 public class Test2 {
 
 	public static void main(String[] args) throws Exception {
-		String path = "E:/Test";
+		String path = "E:/release";
 		List<File> allList = new ArrayList<File>();
 		LinkedList<File> list = new LinkedList<File>();
 
@@ -89,6 +91,22 @@ public class Test2 {
 			
 
 		System.out.println(responseDetailsJson.toJSONString());
+		
+		 File outFile = new File(path+"/newFile.json");
+		  try (FileOutputStream fop = new FileOutputStream(outFile)) {
+		   // if file doesn't exists, then create it
+		   if (!outFile.exists()) {
+			   outFile.createNewFile();
+		   }
+		   // get the content in bytes
+		   byte[] contentInBytes = responseDetailsJson.toJSONString().getBytes();
+		   fop.write(contentInBytes);
+		   fop.flush();
+		   fop.close();
+		   System.out.println("Done");
+		  } catch (IOException e) {
+		   e.printStackTrace();
+		  }
 
 	}
 }

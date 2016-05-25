@@ -10,6 +10,7 @@ import org.apache.mina.filter.codec.ProtocolCodecFilter;
 import org.apache.mina.filter.codec.textline.TextLineCodecFactory;
 import org.apache.mina.filter.keepalive.KeepAliveFilter;
 import org.apache.mina.filter.keepalive.KeepAliveMessageFactory;
+import org.apache.mina.filter.keepalive.KeepAliveRequestTimeoutHandler;
 import org.apache.mina.filter.logging.LoggingFilter;
 import org.apache.mina.transport.socket.nio.NioSocketAcceptor;
 import org.slf4j.Logger;
@@ -47,9 +48,10 @@ public class MinaServer {
         acceptor.getFilterChain().addLast("codec",new ProtocolCodecFilter(new TextLineCodecFactory(Charset.forName("UTF-8"))));  
         
         KeepAliveMessageFactory heartBeatFactory = new KeepAliveMessageFactoryImpl();  
+        KeepAliveRequestTimeoutHandler heartBeatHandler = new     KeepAliveRequestTimeoutHandlerImpl();
 
         KeepAliveFilter heartBeat = new KeepAliveFilter(heartBeatFactory,  
-                IdleStatus.BOTH_IDLE);  
+                IdleStatus.BOTH_IDLE,heartBeatHandler);  
         //设置是否forward到下一个filter  
         heartBeat.setForwardEvent(true);  
         //设置心跳频率  
@@ -68,11 +70,19 @@ public class MinaServer {
 
 	}
     
+    private static class KeepAliveRequestTimeoutHandlerImpl implements KeepAliveRequestTimeoutHandler{
+
+		@Override
+		public void keepAliveRequestTimedOut(KeepAliveFilter filter, IoSession session) throws Exception {
+			filter.setRequestTimeoutHandler(DEAF_SPEAKER);
+		}
+    	
+    }
     
 private static   class KeepAliveMessageFactoryImpl implements KeepAliveMessageFactory {
     	
     	@Override
-    	public boolean isRequest(IoSession session, Object message) {
+    	public boolean isRequest(IoSession session, Object message) {//2
     		System.out.println("isRequest:"+message);
     		// TODO Auto-generated method stub
     		if(message.equals(HEARTBEATREQUEST)){
@@ -85,7 +95,7 @@ private static   class KeepAliveMessageFactoryImpl implements KeepAliveMessageFa
     	}
     	
     	@Override
-    	public boolean isResponse(IoSession session, Object message) {
+    	public boolean isResponse(IoSession session, Object message) {//3
     		// TODO Auto-generated method stub
     		System.out.println("isResponse:"+message);
     		if(message.equals(HEARTBEATRESPONSE)){
@@ -97,7 +107,7 @@ private static   class KeepAliveMessageFactoryImpl implements KeepAliveMessageFa
     	}
     	
     	@Override
-    	public Object getRequest(IoSession session) {
+    	public Object getRequest(IoSession session) { //1
     		// TODO Auto-generated method stub
     		System.out.println("getRequest");
             LOG.info("请求预设信息: " + HEARTBEATREQUEST);  
@@ -106,12 +116,13 @@ private static   class KeepAliveMessageFactoryImpl implements KeepAliveMessageFa
     	}
     	
     	@Override
-    	public Object getResponse(IoSession session, Object request) {
+    	public Object getResponse(IoSession session, Object request) {//4
     		System.out.println("getResponse");
     	    LOG.info("响应预设信息: " + HEARTBEATRESPONSE);  
             /** 返回预设语句 */  
     	    System.out.println("响应预设信息: " + HEARTBEATRESPONSE);
-            return HEARTBEATRESPONSE;
+    	    //return HEARTBEATRESPONSE;
+             return null;
     	}
     	
     }
