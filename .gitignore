@@ -1,9 +1,8 @@
-*.iml
-*.idea/
-*.project
-*.classpath
-*.settings/
-*target/
-*.orig
-/spy.log
-*.reviewboardrc
+*.jar
+*.war
+*.ear
+/target
+/.settings
+/.classpath
+/.project
+target
