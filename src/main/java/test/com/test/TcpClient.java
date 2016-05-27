@@ -16,7 +16,7 @@ import io.netty.util.CharsetUtil;
 
 public class TcpClient {
 	    public static String HOST = "127.0.0.1";  
-	    public static int PORT = 9999;  
+	    public static int PORT = 3001;  
 	    
 	    public static Bootstrap bootstrap = getBootstrap();  
 	    public static Channel channel = getChannel(HOST,PORT);
@@ -58,11 +58,12 @@ public class TcpClient {
 		 public static void main(String[] args) throws Exception {  
 		        try {  
 		            long t0 = System.nanoTime();  
-		            for (int i = 0; i < 100000; i++) {  
+		            /*for (int i = 0; i < 100000; i++) {  
 		                TcpClient.sendMsg(i+"你好1");  
-		            }  
+		            } */ 
+		            sendMsg("020306&192.168.3.52&0302");
 		            long t1 = System.nanoTime();  
-		            System.out.println((t1-t0)/1000000.0);  
+		            //System.out.println((t1-t0)/1000000.0);  
 		        } catch (Exception e) {  
 		            e.printStackTrace();  
 		        }  

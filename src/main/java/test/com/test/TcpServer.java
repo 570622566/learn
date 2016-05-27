@@ -16,7 +16,7 @@ import io.netty.util.CharsetUtil;
 public class TcpServer {
 
 	private static final String IP = "127.0.0.1";
-	private static final int PORT = 9999;
+	private static final int PORT = 3001;
 	
 	
     protected static final int BIZGROUPSIZE = Runtime.getRuntime().availableProcessors()*2; //默认  
