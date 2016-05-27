@@ -44,7 +44,7 @@ public class ServerHandler extends IoHandlerAdapter {
 	            return;  
 	        }  
 	        // 返回消息字符串  
-	        //session.write("Hi Client!");  
+	        session.write("Hi Client!");  
 	        // 打印客户端传来的消息内容  
 	        System.out.println("Message written..." + str);  
 	        String ip = session.getRemoteAddress().toString();  

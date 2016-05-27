@@ -18,6 +18,10 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.reflect.TypeToken;
+
 public class JacksonTest {
 	
 	
@@ -107,6 +111,22 @@ public class JacksonTest {
     	
     }
     
+    @Test
+    public void writeListToJsonByGson(){
+    	   List<AccountBean> list = new ArrayList<AccountBean>();
+           list.add(bean);
+           
+           bean = new AccountBean();
+           bean.setId(2);
+           bean.setAddress("address2");
+           bean.setEmail("email2");
+           bean.setName("haha2");
+           list.add(bean);
+           
+           
+           JsonElement jsonTree = new Gson().toJsonTree(list,new TypeToken<List<AccountBean>>() {}.getType());
+           System.out.println(jsonTree.getAsJsonArray());
+    }
     
     @Test
     public void writeListJSON() {

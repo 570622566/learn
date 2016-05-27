@@ -4,6 +4,7 @@ import java.net.InetSocketAddress;
 import java.nio.charset.Charset;
 
 import org.apache.mina.core.future.ConnectFuture;
+import org.apache.mina.core.session.IoSession;
 import org.apache.mina.filter.codec.ProtocolCodecFilter;
 import org.apache.mina.filter.codec.textline.TextLineCodecFactory;
 import org.apache.mina.filter.logging.LoggingFilter;
@@ -26,16 +27,18 @@ public class MinaClient {
         connector.setHandler(new ClientHandler());  
         
         // 建立连接  
-        ConnectFuture cf = connector.connect(new InetSocketAddress("127.0.0.1", 8901));  
+        ConnectFuture cf = connector.connect(new InetSocketAddress("127.0.0.1", 3001));  
         
         // 等待连接创建完成  
-        cf.awaitUninterruptibly();  
+        cf.awaitUninterruptibly(); 
+        IoSession session = cf.getSession();
         // 发送消息  
-        cf.getSession().write("Hi Server!");  
+        //cf.getSession().write("Hi Server!");  
+        session.write("020306&192.168.3.52&0302");
         // 发送消息  
        // cf.getSession().write("quit"); 
      // 等待连接断开  
-        cf.getSession().getCloseFuture().awaitUninterruptibly();  
+        session.getCloseFuture().awaitUninterruptibly();  
         // 释放连接  
         connector.dispose();  
         

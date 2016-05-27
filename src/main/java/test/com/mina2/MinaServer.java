@@ -83,13 +83,10 @@ private static   class KeepAliveMessageFactoryImpl implements KeepAliveMessageFa
     	@Override
     	public boolean isRequest(IoSession session, Object message) {//2  判断是否心跳请求包  是的话返回true 
     		System.out.println("isRequest:"+message);
-    		// TODO Auto-generated method stub
     		if(message.equals(HEARTBEATREQUEST)){
-    			
     			System.out.println("请求心跳包信息: " + message);
     			return true;  
     		}
-
 			return false;
     	}
     	
