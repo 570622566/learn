@@ -146,7 +146,7 @@ public class FtpUtil {
 			List<String> fileList = f1.getFileList("update/release/");
 			f1.closeFtp();
 			for (String s : fileList) {
-				System.out.println(s);
+				System.out.println(	Double.valueOf(s.replace("v", "")));
 			}
 		}
 	
