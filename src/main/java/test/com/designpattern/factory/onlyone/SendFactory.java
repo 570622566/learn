@@ -1,4 +1,8 @@
-package test.com.designpattern.factory;
+package test.com.designpattern.factory.onlyone;
+
+import test.com.designpattern.factory.MailSender;
+import test.com.designpattern.factory.Sender;
+import test.com.designpattern.factory.SmsSender;
 
 public class SendFactory {
 	
