@@ -70,9 +70,9 @@ public class MinaServer {
         acceptor.bind();  
         System.out.println("Server started on port： " + PORT);  
         
-        Thread.sleep(10000l);
+        Thread.sleep(60000l);
         
-        serverHandler.sendMessage("你们好!!");
+        serverHandler.sendMessage("hiiiiiiiiiiiiiiiiiiiiiiiiii!!");
 
 	}
     

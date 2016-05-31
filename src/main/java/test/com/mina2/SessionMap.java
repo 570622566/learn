@@ -37,8 +37,11 @@ public class SessionMap  {
 						.getId()));
 				System.out.println("反向发送消息到客户端Session---key=" + session.getId()
 						+ "----------消息=" + message + " " + i);
+				
 				if (session != null) {
 					// session.resumeWrite();
+				   // String clientIP = ((InetSocketAddress)session.getRemoteAddress()).getAddress().getHostAddress();   对特定ip进行推送
+				//    if("192.168.3.51".equals(clientIP))
 					session.write(message);
 				}
 			}
