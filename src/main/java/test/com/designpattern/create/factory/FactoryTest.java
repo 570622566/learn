@@ -17,7 +17,11 @@ import test.com.designpattern.create.factory.onlyone.SendFactory;
  * 
  */
 public class FactoryTest {
-
+	/**
+	 * 其实这个模式的好处就是，如果你现在想增加一个功能：发及时信息，则只需做一个实现类，实现Sender接口，同时做一个工厂类，实现Provider接口，就OK了，无需去改动现成的代码。这样做，拓展性较好！
+	 * 
+	 * @param args
+	 */
 	public static void main(String[] args) {
 
 		// 单一工厂
@@ -38,6 +42,6 @@ public class FactoryTest {
 		 */
 		Sender sender2 = test.com.designpattern.create.factory.staticfactory.SendFactory.produceMail();
 		sender2.Send();
-
+		
 	}
 }
