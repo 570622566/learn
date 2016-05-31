@@ -5,7 +5,7 @@ import com.alibaba.fastjson.JSON;
 public class Test1 {
 	
 	public static void main(String[] args) {
-		String msg = "020306&192.168.3.66&192.168.3.128&192.168.3.166&192.168.3.222&0302";
+		String msg = "020306&192.168.3.66&0302";
 		//msg.substring(0, 2).equals("06")&&msg.indexOf("&")!=-1
 		
 		  msg = msg.substring(msg.indexOf("0203")+4, msg.lastIndexOf("0302"));
