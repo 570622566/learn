@@ -1,8 +1,8 @@
-package test.com.designpattern.factory.onlyone;
+package test.com.designpattern.create.factory.onlyone;
 
-import test.com.designpattern.factory.MailSender;
-import test.com.designpattern.factory.Sender;
-import test.com.designpattern.factory.SmsSender;
+import test.com.designpattern.create.factory.MailSender;
+import test.com.designpattern.create.factory.Sender;
+import test.com.designpattern.create.factory.SmsSender;
 
 public class SendFactory {
 	

@@ -1,4 +1,4 @@
-package test.com.designpattern.factory;
+package test.com.designpattern.create.factory;
 
 public class MailSender implements Sender {
 

@@ -1,6 +1,6 @@
-package test.com.designpattern.factory;
+package test.com.designpattern.create.factory;
 
-import test.com.designpattern.factory.onlyone.SendFactory;
+import test.com.designpattern.create.factory.onlyone.SendFactory;
 
 /**
  * @author Administrator 一个工厂设计模式
@@ -29,14 +29,14 @@ public class FactoryTest {
 		 * 多工厂设计模式
 		 * 
 		 */
-		test.com.designpattern.factory.mulfactory.SendFactory mulfactory = new test.com.designpattern.factory.mulfactory.SendFactory();
+		test.com.designpattern.create.factory.mulfactory.SendFactory mulfactory = new test.com.designpattern.create.factory.mulfactory.SendFactory();
 		Sender sender1 = mulfactory.produceMail();
 		sender1.Send();
 		
 		/**
 		 * 静态工厂设计模式
 		 */
-		Sender sender2 = test.com.designpattern.factory.staticfactory.SendFactory.produceMail();
+		Sender sender2 = test.com.designpattern.create.factory.staticfactory.SendFactory.produceMail();
 		sender2.Send();
 
 	}
