@@ -6,11 +6,18 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.Callable;
+import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPFile;
 import org.apache.commons.net.ftp.FTPReply;
+
+import com.google.common.cache.Cache;
+import com.google.common.cache.CacheBuilder;
+import com.google.common.collect.Ordering;
 
 public class FtpUtil {
 
@@ -75,10 +82,10 @@ public class FtpUtil {
 		for (int i = 0; ftpFiles != null && i < ftpFiles.length; i++) {
 			FTPFile file = ftpFiles[i];
 			if (file.isFile()) {
-				System.out.println("文件夹下面的文件=====" + file.getName());
+				//System.out.println("文件夹下面的文件=====" + file.getName());
 				fileLists.add(file.getName());
 			} else if (file.isDirectory()) {
-				System.out.println("文件夹名称为=====" + file.getName());
+				//System.out.println("文件夹名称为=====" + file.getName());
 				fileLists.add(file.getName());
 				//下面的方法是递归迭代方式进行遍历
 		/*		List<String> childLists = getFileList(path + file.getName() + "/");
@@ -133,6 +140,28 @@ public class FtpUtil {
 	}
 
 	public static void main(String[] args) throws Exception {
+		
+		
+	Cache<String,String> cache = CacheBuilder.newBuilder().maximumSize(1000).expireAfterAccess(450, TimeUnit.MINUTES).build();
+		
+		String resultVal = cache.get("version", new Callable<String>() {
+
+			@Override
+			public String call() throws Exception {
+				 
+				return  generateLastVersion();
+			}
+		});
+		
+        System.out.println("version value : " + resultVal);
+		
+	}
+
+	/**
+	 * @throws Exception
+	 * @throws ParseException
+	 */
+	private static String generateLastVersion() throws Exception, ParseException {
 		FtpUtil f1 = new FtpUtil();
 
 		Ftp f = new Ftp();
@@ -141,15 +170,25 @@ public class FtpUtil {
 		f.setPort(21);
 		f.setPwd("wangzhijie_er3456t8");
 		f.setPath("");
+		String verison = org.apache.commons.lang3.StringUtils.EMPTY;
 		boolean connectFtp = FtpUtil.connectFtp(f);
 		if(connectFtp){
 			List<String> fileList = f1.getFileList("update/release/");
 			f1.closeFtp();
+			   List<Double> numbers = new ArrayList<Double>();
 			for (String s : fileList) {
-				System.out.println(	Double.valueOf(s.replace("v", "")));
+				//System.out.println(	Double.valueOf(s.replace("v", "")));
+				numbers.add(Double.valueOf(s.replace("v", "")));
 			}
+			
+			  @SuppressWarnings("rawtypes")
+			Ordering ordering = Ordering.natural();
+			  Collections.sort(numbers,ordering );
+			//  System.out.println("Maximum: " + ordering.max(numbers));
+			  verison =  ordering.max(numbers)+"";
 		}
-	
+		
+		return verison;
 	}
 
 }

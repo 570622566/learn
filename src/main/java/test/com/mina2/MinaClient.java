@@ -27,7 +27,7 @@ public class MinaClient {
         connector.setHandler(new ClientHandler());  
         
         // 建立连接  
-        ConnectFuture cf = connector.connect(new InetSocketAddress("127.0.0.1", 3001));  
+        ConnectFuture cf = connector.connect(new InetSocketAddress("127.0.0.1", 8901));  
         
         // 等待连接创建完成  
         cf.awaitUninterruptibly(); 

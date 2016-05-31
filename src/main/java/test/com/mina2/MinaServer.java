@@ -60,12 +60,19 @@ public class MinaServer {
         acceptor.getFilterChain().addLast("heartbeat", heartBeat);  
 
         // 指定业务逻辑处理器  
-        acceptor.setHandler(new ServerHandler());  
+        ServerHandler serverHandler = new ServerHandler();
+     
+        acceptor.setHandler(serverHandler); 
+        
         // 设置端口号  
         acceptor.setDefaultLocalAddress(new InetSocketAddress(PORT));  
         // 启动监听线程  
         acceptor.bind();  
         System.out.println("Server started on port： " + PORT);  
+        
+        Thread.sleep(10000l);
+        
+        serverHandler.sendMessage("你们好!!");
 
 	}
     
