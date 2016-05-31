@@ -85,8 +85,8 @@ public class Test2 {
 					jsonArray.add(JSON.toJSON(node));
 			}
 			JSONObject json = new JSONObject();
-			json.put("namespace", path.replace(rootPath, ""));
-			json.put("platformVersion", "1.0.1");
+		//	json.put("namespace", path.replace(rootPath, ""));
+			json.put("platformVersion", "v1.2");
 			json.put("list", jsonArray);
 			
 		System.out.println(json.toJSONString());
