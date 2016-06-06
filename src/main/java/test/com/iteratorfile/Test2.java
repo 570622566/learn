@@ -86,12 +86,12 @@ public class Test2 {
 			}
 			JSONObject json = new JSONObject();
 		//	json.put("namespace", path.replace(rootPath, ""));
-			json.put("platformVersion", "v1.2");
+			json.put("platformVersion", "v1.4");
 			json.put("list", jsonArray);
 			
 		System.out.println(json.toJSONString());
 		
-		 File outFile = new File(path+"/newFile.json");
+		 File outFile = new File(path+"/version.json");
 		  try (FileOutputStream fop = new FileOutputStream(outFile)) {
 		   // if file doesn't exists, then create it
 		   if (!outFile.exists()) {
