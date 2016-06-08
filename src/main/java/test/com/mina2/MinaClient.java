@@ -27,14 +27,14 @@ public class MinaClient {
         connector.setHandler(new ClientHandler());  
         
         // 建立连接  
-        ConnectFuture cf = connector.connect(new InetSocketAddress("127.0.0.1", 8901));  
+        ConnectFuture cf = connector.connect(new InetSocketAddress("127.0.0.1", 3001));  
         
         // 等待连接创建完成  
         cf.awaitUninterruptibly(); 
         IoSession session = cf.getSession();
         // 发送消息  
         //cf.getSession().write("Hi Server!");  
-        session.write("020306&192.168.3.52&0302");
+        session.write("020302&777D2E360CCF6222848BE2909E6DC8C5&CN=信息通信处测试 370202020202020202, OU=00, OU=00, O=10, L=00, L=02, S=37, C=CN0302");
         // 发送消息  
        // cf.getSession().write("quit"); 
      // 等待连接断开  
