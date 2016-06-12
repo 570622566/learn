@@ -20,27 +20,24 @@ public class MinaClient {
         // 设置日志记录器  
         connector.getFilterChain().addLast("logger", new LoggingFilter());  
         // 设置编码过滤器  
-        connector.getFilterChain().addLast("codec", new ProtocolCodecFilter(new TextLineCodecFactory(Charset.forName("UTF-8"))));   
+        connector.getFilterChain().addLast("codec",new ProtocolCodecFilter(new MsgCodecFactory(Charset.forName("UTF-8"))));  
         // 设置连接超时检查时间  
         connector.setConnectTimeoutCheckInterval(30);  
         // 设置事件处理器  
         connector.setHandler(new ClientHandler());  
         
         // 建立连接  
-        ConnectFuture cf = connector.connect(new InetSocketAddress("127.0.0.1", 3001));  
+        ConnectFuture cf = connector.connect(new InetSocketAddress("127.0.0.1", 8901));  
         
         // 等待连接创建完成  
         cf.awaitUninterruptibly(); 
         IoSession session = cf.getSession();
+        for(;;)
+            session.write("020310&777D2E360CCF6222848BE2909E6DC8C5&CN=信息通信处测试 370202020202020202, OU=00, OU=00, O=10, L=00, L=02, S=37, C=CN&10.49.138.1750302");
+         //   session.getCloseFuture().awaitUninterruptibly();   // 等待连接断开  
+           // connector.dispose();  
+
         // 发送消息  
-        //cf.getSession().write("Hi Server!");  
-        session.write("020302&777D2E360CCF6222848BE2909E6DC8C5&CN=信息通信处测试 370202020202020202, OU=00, OU=00, O=10, L=00, L=02, S=37, C=CN0302");
-        // 发送消息  
-       // cf.getSession().write("quit"); 
-     // 等待连接断开  
-        session.getCloseFuture().awaitUninterruptibly();  
-        // 释放连接  
-        connector.dispose();  
         
 	}
 }

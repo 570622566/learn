@@ -45,7 +45,7 @@ public class MinaServer {
         acceptor.getFilterChain().addLast("logger", new LoggingFilter());  
         
         // 设置编码过滤器  
-        acceptor.getFilterChain().addLast("codec",new ProtocolCodecFilter(new TextLineCodecFactory(Charset.forName("UTF-8"))));  
+        acceptor.getFilterChain().addLast("codec",new ProtocolCodecFilter(new MsgCodecFactory(Charset.forName("UTF-8"))));  
         
         KeepAliveMessageFactory heartBeatFactory = new KeepAliveMessageFactoryImpl();  
         KeepAliveRequestTimeoutHandler heartBeatHandler = new     KeepAliveRequestTimeoutHandlerImpl();
