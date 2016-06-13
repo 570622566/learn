@@ -13,7 +13,7 @@ public class Test5 {
 		//create buffer with capacity of 48 bytes
 		ByteBuffer buf = ByteBuffer.allocate(2048);
 		
-		int bytesRead = inChannel.read(buf); //write into buffer.
+		int bytesRead = inChannel.read(buf); //read into buffer.
 		while(bytesRead!=-1){
 			  buf.flip();  //make buffer ready for read
 			  
@@ -22,6 +22,14 @@ public class Test5 {
 			  }
 			  buf.clear(); //make buffer ready for writing
 			  bytesRead = inChannel.read(buf);
+			  
+			//  inChannel.write(buf);			//从Buffer读取数据到Channel的例子：   read from buffer into channel.
+			 //使用get()方法从Buffer中读取数据的例子
+			  /**
+			   * get方法有很多版本，允许你以不同的方式从Buffer中读取数据。例如，从指定position读取，或者从Buffer中读取数据到字节数组。更多Buffer实现的细节参考JavaDoc。
+			   */
+			  
+
 
 		}
 		aFile.close();
