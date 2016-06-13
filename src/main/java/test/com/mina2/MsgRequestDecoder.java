@@ -19,13 +19,13 @@ public class MsgRequestDecoder extends CumulativeProtocolDecoder  {
             
             if(length > in.remaining() -4){ //如果消息内容不够，则重置，相当于不读取size  == 相当于判断是否最后一个字节段
             		
-               // System.out.println("package notenough  left="+in.remaining()+" length="+length);
+                System.out.println("package notenough  left="+in.remaining()+" length="+length);
                 in.reset();  //将此缓冲区的位置重置为以前标记的位置。此缓冲区 　　调用此方法不更改也不丢弃标记的值。
 
                 return false;//接收新数据，以拼凑成完整数据   
 
             }else{
-               // System.out.println("package ="+in.toString()); 
+                System.out.println("package ="+in.toString()); 
                 in.getInt();  //The int read
                 byte[] bytes = new byte[length]; 
                 in.get(bytes, 0, length);   //the modified IoBuffer

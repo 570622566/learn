@@ -1,14 +1,17 @@
 package test.com.mina2;
 
 import java.net.InetSocketAddress;
+import java.nio.charset.Charset;
 
 import org.apache.mina.core.service.IoAcceptor;
 import org.apache.mina.core.session.IdleStatus;
 import org.apache.mina.core.session.IoSession;
 import org.apache.mina.filter.codec.ProtocolCodecFilter;
+import org.apache.mina.filter.codec.textline.TextLineCodecFactory;
 import org.apache.mina.filter.keepalive.KeepAliveFilter;
 import org.apache.mina.filter.keepalive.KeepAliveMessageFactory;
 import org.apache.mina.filter.keepalive.KeepAliveRequestTimeoutHandler;
+import org.apache.mina.filter.logging.LogLevel;
 import org.apache.mina.filter.logging.LoggingFilter;
 import org.apache.mina.transport.socket.nio.NioSocketAcceptor;
 import org.slf4j.Logger;
@@ -37,16 +40,20 @@ public class MinaServer {
         
         acceptor.getSessionConfig().setReadBufferSize(1024);  
         acceptor.getSessionConfig().setIdleTime(IdleStatus.BOTH_IDLE, IDELTIMEOUT);
-        
+      
+        LoggingFilter lf = new LoggingFilter();
+		lf.setSessionOpenedLogLevel(LogLevel.DEBUG);//配置日志级别
         
         // 设置日志记录器  
-        acceptor.getFilterChain().addLast("logger", new LoggingFilter());  
+        acceptor.getFilterChain().addLast("logger", lf);  
         
         // 设置编码过滤器  
-        acceptor.getFilterChain().addLast("codec",new ProtocolCodecFilter(new MsgCodecFactory()));  
+      //  acceptor.getFilterChain().addLast("codec",new ProtocolCodecFilter(new MsgCodecFactory()));  
+        acceptor.getFilterChain().addLast("codec",new ProtocolCodecFilter(new TextLineCodecFactory(Charset.forName("UTF-8"))));  
+
         
-        KeepAliveMessageFactory heartBeatFactory = new KeepAliveMessageFactoryImpl();  
-        KeepAliveRequestTimeoutHandler heartBeatHandler = new     KeepAliveRequestTimeoutHandlerImpl();
+      KeepAliveMessageFactory heartBeatFactory = new KeepAliveMessageFactoryImpl();  
+        KeepAliveRequestTimeoutHandler heartBeatHandler = new  KeepAliveRequestTimeoutHandlerImpl();
 
         KeepAliveFilter heartBeat = new KeepAliveFilter(heartBeatFactory,  
                 IdleStatus.BOTH_IDLE,heartBeatHandler);  
@@ -58,10 +65,11 @@ public class MinaServer {
         acceptor.getFilterChain().addLast("heartbeat", heartBeat);  
 
         // 指定业务逻辑处理器  
-        ServerHandler serverHandler = new ServerHandler();
+      //  ServerHandler serverHandler = new ServerHandler();
      
-        acceptor.setHandler(serverHandler); 
-        
+       // acceptor.setHandler(serverHandler); 
+        acceptor.setHandler(  new TimeServerHandler() );
+
         // 设置端口号  
         acceptor.setDefaultLocalAddress(new InetSocketAddress(PORT));  
         // 启动监听线程  
@@ -70,7 +78,7 @@ public class MinaServer {
         
         Thread.sleep(60000l);
         
-        serverHandler.sendMessage("hiiiiiiiiiiiiiiiiiiiiiiiiii!!");
+       // serverHandler.sendMessage("hiiiiiiiiiiiiiiiiiiiiiiiiii!!");
 
 	}
     

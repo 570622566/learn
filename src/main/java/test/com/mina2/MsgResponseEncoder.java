@@ -11,7 +11,7 @@ public class MsgResponseEncoder extends ProtocolEncoderAdapter {
 
 	@Override
 	public void encode(IoSession session, Object message, ProtocolEncoderOutput out) throws Exception {
-	 //   System.out.println(message);
+	    System.out.println(message);
 	    IoBuffer buf = IoBuffer.allocate(100).setAutoExpand(true);
 	    
 	    String strOut = message.toString();
