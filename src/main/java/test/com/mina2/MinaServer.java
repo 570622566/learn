@@ -1,13 +1,11 @@
 package test.com.mina2;
 
 import java.net.InetSocketAddress;
-import java.nio.charset.Charset;
 
 import org.apache.mina.core.service.IoAcceptor;
 import org.apache.mina.core.session.IdleStatus;
 import org.apache.mina.core.session.IoSession;
 import org.apache.mina.filter.codec.ProtocolCodecFilter;
-import org.apache.mina.filter.codec.textline.TextLineCodecFactory;
 import org.apache.mina.filter.keepalive.KeepAliveFilter;
 import org.apache.mina.filter.keepalive.KeepAliveMessageFactory;
 import org.apache.mina.filter.keepalive.KeepAliveRequestTimeoutHandler;
@@ -23,7 +21,7 @@ import org.slf4j.LoggerFactory;
  */
 public class MinaServer {
 	
-    private static final int PORT = 8901;// 定义监听端口  
+    private static final int PORT = 3001;// 定义监听端口  
     /** 30秒后超时 */  
     private static final int IDELTIMEOUT = 30;  
     /** 15秒发送一次心跳包 */  
@@ -45,7 +43,7 @@ public class MinaServer {
         acceptor.getFilterChain().addLast("logger", new LoggingFilter());  
         
         // 设置编码过滤器  
-        acceptor.getFilterChain().addLast("codec",new ProtocolCodecFilter(new MsgCodecFactory(Charset.forName("UTF-8"))));  
+        acceptor.getFilterChain().addLast("codec",new ProtocolCodecFilter(new MsgCodecFactory()));  
         
         KeepAliveMessageFactory heartBeatFactory = new KeepAliveMessageFactoryImpl();  
         KeepAliveRequestTimeoutHandler heartBeatHandler = new     KeepAliveRequestTimeoutHandlerImpl();

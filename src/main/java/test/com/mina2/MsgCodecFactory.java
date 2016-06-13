@@ -1,7 +1,5 @@
 package test.com.mina2;
 
-import java.nio.charset.Charset;
-
 import org.apache.mina.core.session.IoSession;
 import org.apache.mina.filter.codec.ProtocolCodecFactory;
 import org.apache.mina.filter.codec.ProtocolDecoder;
@@ -14,9 +12,9 @@ public class MsgCodecFactory implements ProtocolCodecFactory {
 	private final MsgResponseEncoder encoder; // 编码  
 	private final MsgRequestDecoder decoder; // 解码  
 	
-	public MsgCodecFactory(Charset charset) {  
-	    encoder = new MsgResponseEncoder(charset);  
-	    decoder = new MsgRequestDecoder(charset);  
+	public MsgCodecFactory() {  
+	    encoder = new MsgResponseEncoder();  
+	    decoder = new MsgRequestDecoder();  
 	}  
 	
 	@Override
