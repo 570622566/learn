@@ -34,7 +34,7 @@ public class MinaClient {
 				"020310&777D2E360CCF6222848BE2909E6DC8C5&CN=信息通信处测试 370202020202020202, OU=00, OU=00, O=10, L=00, L=02, S=37, C=CN&10.49.138.1750302");
 		session.getCloseFuture().awaitUninterruptibly(); // 等待连接断开
 		connector.dispose();
-
+		
 		// 发送消息
 
 	}

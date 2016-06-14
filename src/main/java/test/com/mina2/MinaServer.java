@@ -28,7 +28,7 @@ public class MinaServer {
     /** 30秒后超时 */  
     private static final int IDELTIMEOUT = 30;  
     /** 15秒发送一次心跳包 */  
-    private static final int HEARTBEATRATE = 15;  
+    private static final int HEARTBEATRATE = 90;  
     private static final String HEARTBEATREQUEST = "0x11";  
     private static final String HEARTBEATRESPONSE = "0x12";  
     private static final Logger LOG = LoggerFactory.getLogger(MinaServer.class);  
@@ -49,7 +49,7 @@ public class MinaServer {
         
         // 设置编码过滤器  
       //  acceptor.getFilterChain().addLast("codec",new ProtocolCodecFilter(new MsgCodecFactory()));  
-        acceptor.getFilterChain().addLast("codec",new ProtocolCodecFilter(new TextLineCodecFactory(Charset.forName("UTF-8"))));  
+          acceptor.getFilterChain().addLast("codec",new ProtocolCodecFilter(new TextLineCodecFactory(Charset.forName("UTF-8"))));  
 
         
       KeepAliveMessageFactory heartBeatFactory = new KeepAliveMessageFactoryImpl();  
@@ -65,8 +65,7 @@ public class MinaServer {
         acceptor.getFilterChain().addLast("heartbeat", heartBeat);  
 
         // 指定业务逻辑处理器  
-      //  ServerHandler serverHandler = new ServerHandler();
-     
+       ServerHandler serverHandler = new ServerHandler();
        // acceptor.setHandler(serverHandler); 
         acceptor.setHandler(  new TimeServerHandler() );
 

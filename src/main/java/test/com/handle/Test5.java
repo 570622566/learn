@@ -28,8 +28,6 @@ public class Test5 {
 			  /**
 			   * get方法有很多版本，允许你以不同的方式从Buffer中读取数据。例如，从指定position读取，或者从Buffer中读取数据到字节数组。更多Buffer实现的细节参考JavaDoc。
 			   */
-			  
-
 
 		}
 		aFile.close();
