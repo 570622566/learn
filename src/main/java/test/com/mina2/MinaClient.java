@@ -29,7 +29,7 @@ public class MinaClient {
 		// 等待连接创建完成
 		cf.awaitUninterruptibly();
 		IoSession session = cf.getSession();
-		 for(int i=0;i<5;i++)
+		 for(int i=0;i<3;i++)
 		session.write(
 				"020310&777D2E360CCF6222848BE2909E6DC8C5&CN=信息通信处测试 370202020202020202, OU=00, OU=00, O=10, L=00, L=02, S=37, C=CN&10.49.138.1750302");
 		session.getCloseFuture().awaitUninterruptibly(); // 等待连接断开

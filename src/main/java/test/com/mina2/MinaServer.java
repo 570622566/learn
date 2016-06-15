@@ -38,8 +38,8 @@ public class MinaServer {
 		
         IoAcceptor acceptor = new NioSocketAcceptor();  
         
-        acceptor.getSessionConfig().setReadBufferSize(1024);  
-        acceptor.getSessionConfig().setIdleTime(IdleStatus.BOTH_IDLE, IDELTIMEOUT);
+       // acceptor.getSessionConfig().setReadBufferSize(1024);  
+       // acceptor.getSessionConfig().setIdleTime(IdleStatus.BOTH_IDLE, IDELTIMEOUT);
       
         LoggingFilter lf = new LoggingFilter();
 		lf.setSessionOpenedLogLevel(LogLevel.DEBUG);//配置日志级别
@@ -48,8 +48,8 @@ public class MinaServer {
         acceptor.getFilterChain().addLast("logger", lf);  
         
         // 设置编码过滤器  
-      //  acceptor.getFilterChain().addLast("codec",new ProtocolCodecFilter(new MsgCodecFactory()));  
-          acceptor.getFilterChain().addLast("codec",new ProtocolCodecFilter(new TextLineCodecFactory(Charset.forName("UTF-8"))));  
+       acceptor.getFilterChain().addLast("codec",new ProtocolCodecFilter(new MsgCodecFactory()));  
+         // acceptor.getFilterChain().addLast("codec",new ProtocolCodecFilter(new TextLineCodecFactory(Charset.forName("UTF-8"))));  
 
         
       KeepAliveMessageFactory heartBeatFactory = new KeepAliveMessageFactoryImpl();  
@@ -62,12 +62,12 @@ public class MinaServer {
         //设置心跳频率  
         heartBeat.setRequestInterval(HEARTBEATRATE);  // 本服务器为被定型心跳  即需要每10秒接受一个心跳请求  否则该连接进入空闲状态 并且发出idled方法回调
         heartBeat.setRequestTimeout(120);
-        acceptor.getFilterChain().addLast("heartbeat", heartBeat);  
+        //acceptor.getFilterChain().addLast("heartbeat", heartBeat);  
 
         // 指定业务逻辑处理器  
        ServerHandler serverHandler = new ServerHandler();
-       // acceptor.setHandler(serverHandler); 
-        acceptor.setHandler(  new TimeServerHandler() );
+       acceptor.setHandler(serverHandler); 
+       // acceptor.setHandler(  new TimeServerHandler() );
 
         // 设置端口号  
         acceptor.setDefaultLocalAddress(new InetSocketAddress(PORT));  

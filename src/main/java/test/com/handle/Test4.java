@@ -59,12 +59,12 @@ public class Test4 {
         System.out.println("从以前put过的索引位置为4的下标:length:"+length);//141,4取出来的数值
 
         buf.getInt();  //The int read 不加会截取信息出错  then increments the position by four.  指针又移动四个位置
-        System.out.println("buffer's position:"+buf.position());//4+4=8,从8开始取出string
-        System.out.println("buffer's position 4: " +buf.getInt(4)); //第四个索引存放的是整数
-        System.out.println("buffer's position 8:  "+(char)buf.get(8));//t
-        System.out.println("buffer's position 9:  "+(char)buf.get(9));//t
-        System.out.println("buffer's position 10:  "+(char)buf.get(10));//t
-        System.out.println("buffer's position 11: "+(char)buf.get(11));//0
+        System.out.println("buffer's current position:"+buf.position());//4+4=8,从8开始取出string
+        System.out.println("buffer's index 4: " +buf.getInt(4)); //第四个索引存放的是整数
+        System.out.println("buffer's index 8:  "+(char)buf.get(8));//t
+        System.out.println("buffer's index 9:  "+(char)buf.get(9));//t
+        System.out.println("buffer's index 10:  "+(char)buf.get(10));//t
+        System.out.println("buffer's index 11: "+(char)buf.get(11));//0
         
         byte[] bytes = new byte[length]; 
 
@@ -74,8 +74,10 @@ public class Test4 {
         
         System.out.println("从buffer拿出来的信息:"+ new String(bytes,"GBK"));
         System.out.println(buf.toString());
+        System.out.println("buf.remaining():"+buf.remaining());
         
-        if(length> buf.remaining() -4){//如果消息内容不够，则重置，相当于不读取size
+        
+        if(length> buf.remaining() -4){
             System.out.println("package notEnough:  left="+buf.remaining()+" length="+length);
         }
         
