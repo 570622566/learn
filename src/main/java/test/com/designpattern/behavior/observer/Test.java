@@ -8,7 +8,7 @@ import test.com.designpattern.behavior.observer.role.Watcher;
 public class Test {
 	public static void main(String[] args) {
 		
-        Watched girl = new ConcreteWatched();//被观察者
+        Watched girl = new ConcreteWatched();//新增一个被观察者,可以进来加删,并且存放观察者,也可以进行通知
         Watcher watcher1 = new ConcreteWatcher();//观察者
         Watcher watcher2 = new ConcreteWatcher();
         Watcher watcher3 = new ConcreteWatcher();	

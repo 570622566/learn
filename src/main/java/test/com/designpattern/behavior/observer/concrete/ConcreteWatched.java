@@ -35,6 +35,7 @@ public class ConcreteWatched implements Watched {
 	@Override
 	public void notifyWatchers(String str) {
 		// TODO Auto-generated method stub
+		System.out.println("notifyWatchers..."+str);
 		 // 自动调用实际上是主题进行调用的
         for (Watcher watcher : list)
         {
