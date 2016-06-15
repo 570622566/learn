@@ -20,10 +20,11 @@ public class MsgRequestDecoder extends CumulativeProtocolDecoder  {
             
             if(length > in.remaining() -4){ //长度大于buffer剩余空间   如果消息内容不够，则重置，相当于不读取size  == 相当于判断是否(断包)
             		
-                System.out.println("package notEnough  remaing="+in.remaining()+" length="+length);
+                System.out.println("package notEnough,消息长度大于buffer剩余的空间  remaing="+in.remaining()+" length="+length);
                 in.reset();  //将此缓冲区的位置重置为以前标记的位置。此缓冲区 　　调用此方法不更改也不丢弃标记的值。
                 // int position = mark;
-                
+                System.out.println("将之前的position复位至mark表示是的值,mark值:"+in.markValue()+",复位后:"+in.position());
+                System.out.println("接收新数据，以拼凑成完整数据   ");
                 return false;//接收新数据，以拼凑成完整数据   
 
             }else{
