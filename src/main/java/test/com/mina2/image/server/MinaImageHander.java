@@ -28,7 +28,7 @@ public class MinaImageHander implements IoHandler {
 		System.out.println("one client connect:"+session);
 		//检测到有连接了，服务器就可以发生图片给客服端了，在什么地方发送根据自己情况而定
 		Message mes=new Message();
-		FileInputStream fileInputStream = new FileInputStream("d:\\smil\\20130226\\image.jpg");
+		FileInputStream fileInputStream = new FileInputStream("d:\\img\\0.jpg");
 		FileChannel channel=fileInputStream.getChannel();
 		String jsonStr = "{\"ack\":\"true\", \"command\":\"getstandbydata\", \"dcsn\":\"sn-001\", \"id\":\"2001\"}";
 

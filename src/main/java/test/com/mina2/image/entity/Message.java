@@ -1,7 +1,13 @@
 package test.com.mina2.image.entity;
 
-public class Message {
+import java.io.Serializable;
 
+public class Message implements Serializable   {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7045457935826130149L;
 	private int alonght;//总长度
 	private int imagenamelongth;//图片名字长度
 	private long imagelongth;//图片长度

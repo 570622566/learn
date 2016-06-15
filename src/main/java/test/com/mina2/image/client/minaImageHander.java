@@ -2,7 +2,9 @@ package test.com.mina2.image.client;
 
 import java.io.FileOutputStream;
 import java.nio.channels.FileChannel;
+import java.util.Calendar;
 
+import org.apache.commons.lang3.time.DateFormatUtils;
 import org.apache.mina.core.service.IoHandler;
 import org.apache.mina.core.session.IdleStatus;
 import org.apache.mina.core.session.IoSession;
@@ -50,9 +52,12 @@ public class minaImageHander implements IoHandler {
 		System.out.println("总长度："+mes.getAlonght());
 		System.out.println("imagename:"+mes.getImagename());
 		System.out.println("图片长度："+mes.getImagelongth());
-		FileOutputStream out=new FileOutputStream("d:\\smil\\image.jpg");
+		String dateStr = DateFormatUtils.format(Calendar.getInstance(), "yyyyMMddHHmmss");
+		FileOutputStream out=new FileOutputStream("d:\\img\\"+dateStr+".jpg");
 		FileChannel fc=out.getChannel();
 		out.write(mes.getImage());
+		fc.close();
+		out.close();
 	}
 
 	@Override
