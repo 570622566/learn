@@ -7,6 +7,14 @@ import org.apache.mina.filter.codec.ProtocolDecoderOutput;
 
 public class MsgRequestDecoder extends CumulativeProtocolDecoder  {
 	
+	/* 
+	 *  1、当内容刚好时，返回false，告知父类接收下一批内容
+	 *  2、内容不够时(缓存里的)需要下一批发过来的内容，此时返回false，这样父类 CumulativeProtocolDecoder 会将内容放进IoSession中，等下次来数据后就自动拼装再交给本类的doDecode
+	 *  3. 当内容多时，返回true，因为需要再将本批数据进行读取，父类会将剩余的数据再次推送本
+	 * 
+	 * 
+	 * 
+	 */
 	@Override
 	protected boolean doDecode(IoSession session, IoBuffer in, ProtocolDecoderOutput out) throws Exception {
 		if(in.remaining()<4){ //The remaining bytes in the buffer
@@ -39,7 +47,7 @@ public class MsgRequestDecoder extends CumulativeProtocolDecoder  {
                 }
                 
                 if(in.remaining()>0){//如果读取内容后还粘了包，就让父类再给一次，进行下一次解析 
-                	 return true;
+                	 return true; //要再将本批数据进行读取，父类会将剩余的数据再次推送本类的doDecode
                 }
               
             }

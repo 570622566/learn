@@ -25,7 +25,7 @@ public class Test4 {
         System.out.println("insert...........................................");
         
 		String strOut = s;
-		buf.putInt(strOut.getBytes(Charset.forName("GBK")).length);//插入141个字节数字长度,从4开始,后续我们需要拿出来......................
+		buf.putInt(strOut.getBytes(Charset.forName("GBK")).length);//插入141个字节数字长度,从4-7开始,后续我们需要拿出来......................
 		//  x >> 24|x >> 16|x >> 8|x >> 0   移动了四个字节
 		buf.putString(strOut, Charset.forName("GBK").newEncoder());//写内容进buffer特定的编码,特殊的字节
 		buf.getInt();//then increments the position by four. 在字节流里读取4个Byte，构成一个Int返回给你咯。从字节流里怎么知道你要的数据类型是什么，只能按照你的意愿去解释字节流，你要int，那就读4个字节解释成int给你，你要char，那就从字节流里读取2个字节解释成char返回给你，你要Byte，你就只读取一个字节返回给你
