@@ -36,7 +36,7 @@ public class MinaServer {
 
     public static void main(String[] args) throws Exception {
 		
-        IoAcceptor acceptor = new NioSocketAcceptor();  
+        IoAcceptor acceptor = new NioSocketAcceptor();   //创建非阻塞的socket传输Acceptor
         
        // acceptor.getSessionConfig().setReadBufferSize(1024);  
        // acceptor.getSessionConfig().setIdleTime(IdleStatus.BOTH_IDLE, IDELTIMEOUT);
