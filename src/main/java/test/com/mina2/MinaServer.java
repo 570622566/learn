@@ -50,7 +50,6 @@ public class MinaServer {
 		// acceptor.getSessionConfig().setReadBufferSize(1024);
 		// acceptor.getSessionConfig().setIdleTime(IdleStatus.BOTH_IDLE,
 		// IDELTIMEOUT);
-
 		LoggingFilter lf = new LoggingFilter();
 		lf.setSessionOpenedLogLevel(LogLevel.DEBUG);// 配置日志级别
 
