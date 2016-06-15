@@ -3,8 +3,8 @@ package test.com.designpattern.behavior.observer.concrete;
 import java.util.ArrayList;
 import java.util.List;
 
-import test.com.designpattern.behavior.observer.Watcher;
 import test.com.designpattern.behavior.observer.role.Watched;
+import test.com.designpattern.behavior.observer.role.Watcher;
 
 /**
  * 

@@ -1,6 +1,6 @@
 package test.com.designpattern.behavior.observer.concrete;
 
-import test.com.designpattern.behavior.observer.Watcher;
+import test.com.designpattern.behavior.observer.role.Watcher;
 
 /**
  * 

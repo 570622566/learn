@@ -1,4 +1,4 @@
-package test.com.designpattern.behavior.observer;
+package test.com.designpattern.behavior.observer.role;
 
 /**
  * @author Administrator

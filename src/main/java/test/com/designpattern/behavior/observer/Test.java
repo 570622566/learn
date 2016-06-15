@@ -3,6 +3,7 @@ package test.com.designpattern.behavior.observer;
 import test.com.designpattern.behavior.observer.concrete.ConcreteWatched;
 import test.com.designpattern.behavior.observer.concrete.ConcreteWatcher;
 import test.com.designpattern.behavior.observer.role.Watched;
+import test.com.designpattern.behavior.observer.role.Watcher;
 
 public class Test {
 	public static void main(String[] args) {
