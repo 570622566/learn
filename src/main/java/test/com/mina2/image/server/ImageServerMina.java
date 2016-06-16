@@ -12,6 +12,8 @@ import test.com.mina2.image.oper.MyProtocalCodecFactory;
 
 public class ImageServerMina {
 
+	private static final int PORT = 9999;
+
 	public static void main(String[] args) {
 
 		NioSocketAcceptor acceptor=new NioSocketAcceptor();
@@ -25,12 +27,12 @@ public class ImageServerMina {
 		acceptor.getFilterChain().addLast("code",new ProtocolCodecFilter(new MyProtocalCodecFactory("utf-8")));
 		acceptor.setHandler(new MinaImageHander());
 		try {
-			acceptor.bind(new InetSocketAddress(9999));
+			acceptor.bind(new InetSocketAddress(PORT));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+		System.out.println("Server started on port： " + PORT);
+
 		
 	}
 }

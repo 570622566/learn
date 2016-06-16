@@ -69,7 +69,6 @@ public class MyProtocalDecoder extends CumulativeProtocolDecoder {
 
 		} catch (Exception e) {
 			in.position(pos);
-			// in.limit(limit);
 			return false;
 		}
 		return true;
