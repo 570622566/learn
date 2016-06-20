@@ -155,10 +155,10 @@ public class MinaServer {
 		@Override
 		public boolean isResponse(IoSession session, Object message) {
 		//	System.out.println("isResponse:" + message);
-			if (message.equals(HEARTBEATRESPONSE)) {
+			//if (message.equals(HEARTBEATRESPONSE)) {
               //  System.out.println("服务器发送数据包中引发心跳事件: " + message); 
-				return false;
-			}
+			 // 	return false;
+			//}
 
 			return false;
 		}
