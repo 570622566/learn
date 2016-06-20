@@ -25,6 +25,14 @@ public class SessionMap  {
 		this.map.put(key, session);
 	}
 
+	/**
+	 * 移除Session会话信息
+	 */
+
+	public void removeSession(String key, IoSession session) {
+		this.map.remove(key);
+	}
+	
 	public IoSession getSession(String key) {
 		return map.get(key);
 	}

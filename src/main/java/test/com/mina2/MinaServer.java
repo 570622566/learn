@@ -69,10 +69,9 @@ public class MinaServer {
 		KeepAliveMessageFactory heartBeatFactory = new KeepAliveMessageFactoryImpl();
 		KeepAliveRequestTimeoutHandler heartBeatHandler = new KeepAliveRequestTimeoutHandlerImpl();
 		KeepAliveFilter heartBeat = new KeepAliveFilter(heartBeatFactory, IdleStatus.BOTH_IDLE, heartBeatHandler);
-		// 设置是否forward到下一个filter
-		heartBeat.setForwardEvent(false);
+		heartBeat.setForwardEvent(true);//idle事件回发  当session进入idle状态的时候 依然调用handler中的idled方法
 		// 设置心跳频率
-		heartBeat.setRequestInterval(HEARTBEATRATE); // 本服务器为被定型心跳 即需要每15秒接受一个心跳请求  否则该连接进入空闲状态 并且发出idled方法回调
+		heartBeat.setRequestInterval(HEARTBEATRATE); // 本服务器为被定型心跳 即需要每15秒接受一个心跳请求  否则该连接进入空闲状态 并且发出idled方法回调  heartPeriod其实就是服务器对于客户端的IDLE监控时间。
 		
 		heartBeat.setRequestTimeout(20); //超过该时间后则调用KeepAliveRequestTimeoutHandler.CLOSE 
 		 acceptor.getFilterChain().addLast("heartbeat", heartBeat);
@@ -112,11 +111,12 @@ public class MinaServer {
 		@Override
 		public Object getRequest(IoSession session) { // 1 被动型心跳机制无请求 因此直接返回null
 			// TODO Auto-generated method stub
-			System.out.println("getRequest");
-			LOG.info("请求预设信息: " + HEARTBEATREQUEST);
-			System.out.println("请求预设信息: " + HEARTBEATREQUEST);
+		//	System.out.println("getRequest");
+		//	LOG.info("请求预设信息: " + HEARTBEATREQUEST);
+			//	System.out.println("请求预设信息: " + HEARTBEATREQUEST);
 			
-			return HEARTBEATREQUEST;
+			//return HEARTBEATREQUEST;
+			return null;
 		}
 		
 
@@ -154,10 +154,10 @@ public class MinaServer {
 		 */
 		@Override
 		public boolean isResponse(IoSession session, Object message) {
-			System.out.println("isResponse:" + message);
+		//	System.out.println("isResponse:" + message);
 			if (message.equals(HEARTBEATRESPONSE)) {
-                System.out.println("服务器发送数据包中引发心跳事件: " + message); 
-				return true;
+              //  System.out.println("服务器发送数据包中引发心跳事件: " + message); 
+				return false;
 			}
 
 			return false;
