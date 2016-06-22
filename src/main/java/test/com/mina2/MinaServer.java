@@ -131,6 +131,7 @@ public class MinaServer {
 			/** 返回预设语句 */
 			System.out.println("响应预设信息: " + HEARTBEATRESPONSE);
 			return HEARTBEATRESPONSE;
+			//return null;
 		}
 		
 		
