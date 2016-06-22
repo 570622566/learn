@@ -8,6 +8,7 @@ import org.apache.mina.core.future.CloseFuture;
 import org.apache.mina.core.future.IoFuture;
 import org.apache.mina.core.future.IoFutureListener;
 import org.apache.mina.core.service.IoHandlerAdapter;
+import org.apache.mina.core.session.IdleStatus;
 import org.apache.mina.core.session.IoSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -42,6 +43,12 @@ public class ServerHandler extends IoHandlerAdapter {
 	}
 
 
+	@Override
+	public void inputClosed(IoSession session) throws Exception {
+		// TODO Auto-generated method stub
+		super.inputClosed(session);
+	}
+
 
 	/*
 	 * 连接创建事件
@@ -54,9 +61,9 @@ public class ServerHandler extends IoHandlerAdapter {
 
 	@Override
 	public void exceptionCaught(IoSession session, Throwable cause) throws Exception {
-
+		System.out.println("exceptionCaught........."+cause.getMessage());
 		if (cause instanceof java.io.IOException) {
-			session.close();
+			session.closeNow();
 		}
 	}
 
@@ -68,7 +75,7 @@ public class ServerHandler extends IoHandlerAdapter {
 		String str = message.toString();
 		if (str.trim().equalsIgnoreCase("quit")) {
 			// 结束会话
-			session.close(true);
+			session.closeNow();
 			return;
 		}
 		//map.addSession(String.valueOf(session.getId()), session);

@@ -2,12 +2,13 @@ package test.com.mina2;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import org.apache.mina.core.session.IoSession;
 
 public class SessionMap  {
 
-	private Map<String, IoSession> map = new HashMap<String, IoSession>();
+	private Map<String, IoSession> map = new ConcurrentHashMap<String, IoSession>();
 	private static SessionMap sessionMap = null;
 
 	// 构造私有化 单例
