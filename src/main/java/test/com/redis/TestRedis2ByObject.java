@@ -41,5 +41,6 @@ public class TestRedis2ByObject {
         inputStream.close();
         bis.close();
         redis.disconnect();
+        redis.close();
 	}
 }
