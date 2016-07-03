@@ -63,8 +63,8 @@ public class MinaServer {
 		acceptor.getFilterChain().addLast("logger", lf);
 
 		// 设置编码过滤器
-		//acceptor.getFilterChain().addLast("codec", new ProtocolCodecFilter(new MsgCodecFactory()));
-		 acceptor.getFilterChain().addLast("codec",new ProtocolCodecFilter(new TextLineCodecFactory(Charset.forName("UTF-8"))));
+		acceptor.getFilterChain().addLast("codec", new ProtocolCodecFilter(new MsgCodecFactory()));
+		// acceptor.getFilterChain().addLast("codec",new ProtocolCodecFilter(new TextLineCodecFactory(Charset.forName("UTF-8"))));
 
 		KeepAliveMessageFactory heartBeatFactory = new KeepAliveMessageFactoryImpl();
 		KeepAliveRequestTimeoutHandler heartBeatHandler = new KeepAliveRequestTimeoutHandlerImpl();
@@ -74,7 +74,7 @@ public class MinaServer {
 		heartBeat.setRequestInterval(HEARTBEATRATE); // 本服务器为被定型心跳 即需要每15秒接受一个心跳请求  否则该连接进入空闲状态 并且发出idled方法回调  heartPeriod其实就是服务器对于客户端的IDLE监控时间。
 		
 		heartBeat.setRequestTimeout(20); //超过该时间后则调用KeepAliveRequestTimeoutHandler.CLOSE 
-		 acceptor.getFilterChain().addLast("heartbeat", heartBeat);
+		// acceptor.getFilterChain().addLast("heartbeat", heartBeat);
 
 		// 指定业务逻辑处理器
 		ServerHandler serverHandler = new ServerHandler();

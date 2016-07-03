@@ -22,9 +22,14 @@ public class MsgRequestDecoder extends CumulativeProtocolDecoder  {
 		}
 		if(in.remaining()>1){
             in.mark();//标记当前位置，以便reset   　　mark就像书签一样，在这个IoBuffer里作个标记，以后再调用reset时就可以再回到这个mark过的地方。 也就是mark与reset是配对使用的！
+            int length;
+            if(in.prefixedDataAvailable(4)){
+            	length =in.getInt(in.position());//获取此条信息的长度             数据包的定义有很多种方式，这里说下我所用过的两种方式：
+                 //  1.固定消息长度，消息头+消息体+校验码。此方式相对简单，表示的内容也比较少  2 不定消息长度，消息头+消息长度+消息体。此方式可以无限消息长度，比较灵活
+            }else{
+            	return false;
+            }
             
-            int length =in.getInt(in.position());//获取此条信息的长度             数据包的定义有很多种方式，这里说下我所用过的两种方式：
-          //  1.固定消息长度，消息头+消息体+校验码。此方式相对简单，表示的内容也比较少  2 不定消息长度，消息头+消息长度+消息体。此方式可以无限消息长度，比较灵活
             
             if(length > in.remaining() -4){ //长度大于buffer剩余空间   如果消息内容不够，则重置，相当于不读取size  == 相当于判断是否(断包)
             		

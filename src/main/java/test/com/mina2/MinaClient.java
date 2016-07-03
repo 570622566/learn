@@ -16,7 +16,6 @@ import org.apache.mina.transport.socket.nio.NioSocketConnector;
 
 public class MinaClient {
 	
-	
 	private static final String HEARTBEATREQUEST = "0x11";
 	private static final String HEARTBEATRESPONSE = "0x12";
 	private static final int HEART_INTERVAL = 10;
@@ -29,8 +28,8 @@ public class MinaClient {
 		// 设置日志记录器
 		connector.getFilterChain().addLast("logger", new LoggingFilter());
 		// 设置编码过滤器
-		//connector.getFilterChain().addLast("codec", new ProtocolCodecFilter(new MsgCodecFactory()));
-		connector.getFilterChain().addLast("codec",  new ProtocolCodecFilter( new TextLineCodecFactory( Charset.forName( "UTF-8" ))));  
+		connector.getFilterChain().addLast("codec", new ProtocolCodecFilter(new MsgCodecFactory()));
+		//connector.getFilterChain().addLast("codec",  new ProtocolCodecFilter( new TextLineCodecFactory( Charset.forName( "UTF-8" ))));  
 		
 		 ClientKeepAliveFactoryImpl ckafi = new ClientKeepAliveFactoryImpl(); 
 		 KeepAliveFilter kaf = new KeepAliveFilter(ckafi, IdleStatus.READER_IDLE,KeepAliveRequestTimeoutHandler.CLOSE); 
@@ -41,7 +40,7 @@ public class MinaClient {
 		  kaf.setRequestInterval(HEART_INTERVAL); //   说明：设置当连接的读取通道空闲的时候，心跳包请求时间间隔 
 		  kaf.setRequestTimeout(HEART_TIMEOUT);  //设置心跳包请求后 等待反馈超时时间  超过该时间后则调用KeepAliveRequestTimeoutHandler.CLOSE 
 		  
-		  connector.getFilterChain().addLast("heart", kaf);  // 说明： 该过滤器加入到整个通信的过滤链中。 
+		 // connector.getFilterChain().addLast("heart", kaf);  // 说明： 该过滤器加入到整个通信的过滤链中。 
 		// 设置连接超时检查时间
 		connector.setConnectTimeoutCheckInterval(30);
 		// 设置事件处理器
