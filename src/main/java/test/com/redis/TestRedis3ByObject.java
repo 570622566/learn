@@ -22,7 +22,7 @@ public class TestRedis3ByObject {
 
 	//	testSetElements();
         testSetEnsemble();  
-
+        
 
 	}
 

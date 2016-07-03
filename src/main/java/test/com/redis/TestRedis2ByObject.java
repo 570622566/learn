@@ -9,8 +9,15 @@ public class TestRedis2ByObject {
 	public static void main(String[] args) throws Exception {
 		
 		Jedis redis = new Jedis("localhost");
+		redis.del("mingyuan");
+
 		Set<String> set=  redis.keys("mingyuan*");//获取全部的mingyuan开头的keys集合
 		System.out.println(set.size());
+		System.out.println(redis.exists("mingyuan"));
+
+		for (String string : set) {
+			System.out.println("key:"+string);//是键的名称
+		}
 		
 /*
         String set = redis.set("mingyuan", "1");
