@@ -93,6 +93,9 @@ public class ServerHandler extends IoHandlerAdapter {
 			String name[] = ous[0].replaceAll("CN=", "").split(" ");
 			session.write(reqs[0] + "&" + name[0]);// 登录成功，返回用户名和账号
 		}
+		
+		
+		
 
 	}
 

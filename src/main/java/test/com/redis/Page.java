@@ -9,8 +9,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.regex.Pattern;
 
-import org.apache.commons.lang3.StringUtils;
-
 /**
  * 分页类
  * 
@@ -149,9 +147,6 @@ public class Page<T> {
 
 	
 	public List<T> getPagedList(int pageNum) {
-		if(pageNum <1){
-			pageNum = 1;	
-		}
 		int fromIndex = (pageNum - 1) * pageSize;
 		if (fromIndex >= list.size()) {
 			return Collections.emptyList();
@@ -259,14 +254,6 @@ public class Page<T> {
 		return toString();
 	}
 
-	// public static void main(String[] args) {
-	// Page<String> p = new Page<String>(3, 3);
-	// System.out.println(p);
-	// System.out.println("首页："+p.getFirst());
-	// System.out.println("尾页："+p.getLast());
-	// System.out.println("上页："+p.getPrev());
-	// System.out.println("下页："+p.getNext());
-	// }
 
 	/**
 	 * 获取设置总数

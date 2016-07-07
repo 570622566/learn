@@ -8,11 +8,11 @@ public class Message implements Serializable   {
 	 * 
 	 */
 	private static final long serialVersionUID = -7045457935826130149L;
-	private int alonght;//总长度
-	private int imagenamelongth;//图片名字长度
-	private long imagelongth;//图片长度
-	private String imagename;//图片名字
-	private byte[] image;//图片
+	private int alonght;
+	private int imagenamelongth;
+	private long imagelongth;
+	private String imagename;
+	private byte[] image;
 	
 	public int getAlonght() {
 		return alonght;

@@ -178,12 +178,12 @@ public class FtpUtil {
 			   List<Double> numbers = new ArrayList<Double>();
 			for (String s : fileList) {
 				//System.out.println(	Double.valueOf(s.replace("v", "")));
-				numbers.add(Double.valueOf(s.replace("v", "")));
+				numbers.add(Double.valueOf(s.replace("v", "").replace("V", "")));
 			}
 			
 			  @SuppressWarnings("rawtypes")
 			Ordering ordering = Ordering.natural();
-			  Collections.sort(numbers,ordering );
+			Collections.sort(numbers,ordering );
 			//  System.out.println("Maximum: " + ordering.max(numbers));
 			  verison =  ordering.max(numbers)+"";
 		}

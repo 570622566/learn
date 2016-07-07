@@ -29,10 +29,10 @@ public class MinaImageHander implements IoHandler {
 		Message mes=new Message();
 		FileInputStream fileInputStream = new FileInputStream("d:\\img\\0.jpg");
 		FileChannel channel=fileInputStream.getChannel();
-		String jsonStr = "{\"ack\":\"true\", \"command\":\"getstandbydata\", \"dcsn\":\"sn-001\", \"id\":\"2001\"}";
+		String jsonStr = "xxxxImg";
 
 		mes.setImagename(jsonStr);
-		mes.setImagenamelongth(mes.getImagename().length());
+		mes.setImagenamelongth(mes.getImagename().length());//名字长度
 		ByteBuffer bytebuffer=ByteBuffer.allocate((int) channel.size());
 		bytebuffer.clear();
 		channel.read(bytebuffer);
