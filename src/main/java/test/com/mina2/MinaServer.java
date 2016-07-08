@@ -1,13 +1,11 @@
 package test.com.mina2;
 
 import java.net.InetSocketAddress;
-import java.nio.charset.Charset;
 
 import org.apache.mina.core.service.IoAcceptor;
 import org.apache.mina.core.session.IdleStatus;
 import org.apache.mina.core.session.IoSession;
 import org.apache.mina.filter.codec.ProtocolCodecFilter;
-import org.apache.mina.filter.codec.textline.TextLineCodecFactory;
 import org.apache.mina.filter.keepalive.KeepAliveFilter;
 import org.apache.mina.filter.keepalive.KeepAliveMessageFactory;
 import org.apache.mina.filter.keepalive.KeepAliveRequestTimeoutHandler;
@@ -27,7 +25,7 @@ public class MinaServer {
 
 	private static final int PORT = 3001;// 定义监听端口
 	/** 30秒后超时 */
-	private static final int IDELTIMEOUT = 60;
+	private static final int IDELTIMEOUT = 20;
 	/** 15秒发送一次心跳包 */
 	private static final int HEARTBEATRATE = 15;
 	private static final String HEARTBEATREQUEST = "0x11";
@@ -72,9 +70,8 @@ public class MinaServer {
 		heartBeat.setForwardEvent(true);//idle事件回发  当session进入idle状态的时候 依然调用handler中的idled方法
 		// 设置心跳频率
 		heartBeat.setRequestInterval(HEARTBEATRATE); // 本服务器为被定型心跳 即需要每15秒接受一个心跳请求  否则该连接进入空闲状态 并且发出idled方法回调  heartPeriod其实就是服务器对于客户端的IDLE监控时间。
-		
 		heartBeat.setRequestTimeout(20); //超过该时间后则调用KeepAliveRequestTimeoutHandler.CLOSE 
-		// acceptor.getFilterChain().addLast("heartbeat", heartBeat);
+		 acceptor.getFilterChain().addLast("heartbeat", heartBeat);
 
 		// 指定业务逻辑处理器
 		ServerHandler serverHandler = new ServerHandler();
@@ -99,6 +96,7 @@ public class MinaServer {
             System.out.println("《*服务器端*》心跳包发送超时处理(及长时间没有发送（接受）心跳包)"); 
 
 			filter.setRequestTimeoutHandler(CLOSE);
+			session.close(true);
 		}
 
 	}

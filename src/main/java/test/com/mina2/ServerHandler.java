@@ -8,11 +8,19 @@ import org.apache.mina.core.future.CloseFuture;
 import org.apache.mina.core.future.IoFuture;
 import org.apache.mina.core.future.IoFutureListener;
 import org.apache.mina.core.service.IoHandlerAdapter;
+import org.apache.mina.core.session.IdleStatus;
 import org.apache.mina.core.session.IoSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class ServerHandler extends IoHandlerAdapter {
+	@Override
+	public void sessionIdle(IoSession session, IdleStatus status) throws Exception {
+		
+		session.closeNow();
+	}
+
+
 	SessionMap map = SessionMap.newInstance();
 
 	private final static Logger log = LoggerFactory.getLogger(ServerHandler.class);

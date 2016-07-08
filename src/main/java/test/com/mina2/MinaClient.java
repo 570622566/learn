@@ -1,13 +1,11 @@
 package test.com.mina2;
 
 import java.net.InetSocketAddress;
-import java.nio.charset.Charset;
 
 import org.apache.mina.core.future.ConnectFuture;
 import org.apache.mina.core.session.IdleStatus;
 import org.apache.mina.core.session.IoSession;
 import org.apache.mina.filter.codec.ProtocolCodecFilter;
-import org.apache.mina.filter.codec.textline.TextLineCodecFactory;
 import org.apache.mina.filter.keepalive.KeepAliveFilter;
 import org.apache.mina.filter.keepalive.KeepAliveMessageFactory;
 import org.apache.mina.filter.keepalive.KeepAliveRequestTimeoutHandler;
@@ -40,7 +38,7 @@ public class MinaClient {
 		  kaf.setRequestInterval(HEART_INTERVAL); //   说明：设置当连接的读取通道空闲的时候，心跳包请求时间间隔 
 		  kaf.setRequestTimeout(HEART_TIMEOUT);  //设置心跳包请求后 等待反馈超时时间  超过该时间后则调用KeepAliveRequestTimeoutHandler.CLOSE 
 		  
-		 // connector.getFilterChain().addLast("heart", kaf);  // 说明： 该过滤器加入到整个通信的过滤链中。 
+		connector.getFilterChain().addLast("heart", kaf);  // 说明： 该过滤器加入到整个通信的过滤链中。 
 		// 设置连接超时检查时间
 		connector.setConnectTimeoutCheckInterval(30);
 		// 设置事件处理器
