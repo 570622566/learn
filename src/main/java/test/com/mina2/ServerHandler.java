@@ -61,6 +61,7 @@ public class ServerHandler extends IoHandlerAdapter {
 	@Override
 	public void exceptionCaught(IoSession session, Throwable cause) throws Exception {
 		System.out.println("exceptionCaught........."+cause.getMessage());
+
 		if (cause instanceof java.io.IOException) {
 			session.closeNow();
 		}
