@@ -1,6 +1,7 @@
 package test.com.netty.demo;
 
 import java.io.IOException;
+import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
@@ -36,7 +37,14 @@ public class TimeClientHandler implements Runnable {
 
 	@Override
 	public void run() {
-		doConnect();
+		try {
+			doConnect();  //发送链接请求,连城是成功的,所以不重连操作,
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+			System.exit(1);
+	
+		}
 		
 		
 		while(!stop){
@@ -49,17 +57,33 @@ public class TimeClientHandler implements Runnable {
 				while(it.hasNext()){
 					key = it.next();
 					it.remove();
-					handleInput(key);
-					
+					try {
+						handleInput(key);
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+						if(key!=null){
+							key.cancel();
+							if(key.channel()!=null){
+								key.channel().close();
+							}
+						}
+					}
 				}
 				
-				
-				
-				
 			} catch (IOException e) {
+				e.printStackTrace();
+				System.exit(1);
 			}
-			
-			
+		}
+		
+		if(selector!=null){
+			try {
+				selector.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 
@@ -69,21 +93,23 @@ public class TimeClientHandler implements Runnable {
 			//判断是否连接成功
 			SocketChannel sc = (SocketChannel) key.channel();
 			
-			if(key.isConnectable()){
-				if(sc.finishConnect()){
-					
+			if(key.isConnectable()){ //Tests whether this key's channel has either finished, or failed to finish, its socket-connection operation. 
+				//客户端已经返回给ack应答消息
+				if(sc.finishConnect()){ //Finishes the process of connecting a socket channel. 
+					//诺为true,则说明客户端连接成功
 					sc.register(selector, SelectionKey.OP_READ);
 					doWrite(sc);
-				}else
+				}else//诺为false,则直接抛出IOException
 					System.exit(1);
 			}
 			
-			if(key.isReadable()){
+			if(key.isReadable()){//可读的
 				ByteBuffer readBuffer = ByteBuffer.allocate(1024);
-				int readbytes = sc.read(readBuffer);
+				int readbytes = sc.read(readBuffer);//由于是异步的,必须对异步结果进行调用
 				if(readbytes>0){
 					readBuffer.flip();
 					byte[] bytes = new byte[readBuffer.remaining()];
+					readBuffer.get(bytes);
 					String body = new String(bytes,"UTF-8");
 					System.out.println("Now is : "+body);
 					this.stop = true;
@@ -106,15 +132,19 @@ public class TimeClientHandler implements Runnable {
 		writeBuffer.put(req);
 		writeBuffer.flip();
 		sc.write(writeBuffer);
-		if(!writeBuffer.hasRemaining()){
+		if(!writeBuffer.hasRemaining()){//判断缓冲区中的消息全部发送完成.
 			System.out.println("Send order 2 server succeed.");
 		}
 		
 	}
 
-	private void doConnect() {
-		// TODO Auto-generated method stub
-		
+	private void doConnect() throws IOException {
+		if(socketChannel.connect(new InetSocketAddress(host,port))){
+			socketChannel.register(selector, SelectionKey.OP_READ);
+			doWrite(socketChannel);
+		}else{//如果没有连接成功,则将SocketChannel注册到多路复用器上,注册为SelectionKey.OP_CONNECT   当服务器返回syn-ack消息后,Selector就能轮询到这个SocketChanle处于连接就绪状态.
+			socketChannel.register(selector, SelectionKey.OP_CONNECT);
+		}
 	}
 
 }

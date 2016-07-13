@@ -45,19 +45,23 @@ public class MultiplexerTimeServer implements Runnable {
 	public void run() {
 		while(!stop){
 			try {
-				selector.select(1000);//longtimeout  1000milliseconds
+				selector.select(1000);//selector 每隔1s被唤醒一次,selector
 				
-				Set<SelectionKey> selectedKeys = selector.selectedKeys();
+				Set<SelectionKey> selectedKeys = selector.selectedKeys();//当有就绪状态的channel时,selector将返回就绪状态的channel的selectorKey集合
 				Iterator<SelectionKey> it = selectedKeys.iterator();
 				SelectionKey key = null;
 				while(it.hasNext()){
 					key = it.next();
 					it.remove();
 					try {
-						handleInput(key);
+						handleInput(key);//对channel集合进行迭代是网络的异步读写操作所在
 					} catch (Exception e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
+						if(key!=null){
+							key.cancel();
+							if(key.channel()!=null)
+								key.channel().close();
+						}
 					}
 				}
 			} catch (IOException e) {
@@ -78,29 +82,29 @@ public class MultiplexerTimeServer implements Runnable {
 		// TODO Auto-generated method stub
 		if(key.isValid()){
 			//处理新接入的请求信息
-			if(key.isAcceptable()){
-				
+			if(key.isAcceptable()){//接收新客户端请求消息,根据SelectionKey的操作位进行判断即可获知网络事件的类型,通过
+				//相当于完成TCP的三次握手,tcp链路正式建立.
 				ServerSocketChannel ssc = (ServerSocketChannel) key.channel();
 				SocketChannel sc = ssc.accept();
 				sc.configureBlocking(false);
-				sc.register(selector,  SelectionKey.OP_READ);
+				sc.register(selector,  SelectionKey.OP_READ);//add the new connection to the selector
 				
 			}
 			if(key.isReadable()){
-				//读取数据
+				//读取客户端的消息
 				SocketChannel sc = (SocketChannel) key.channel();
-				ByteBuffer readBuffer = ByteBuffer.allocate(1024);
-				int readBytes = sc.read(readBuffer);
+				ByteBuffer readBuffer = ByteBuffer.allocate(1024);//先开辟一个1k的缓冲区
+				int readBytes = sc.read(readBuffer);//读取请求码流
 				if(readBytes>0){
-					readBuffer.flip();
+					readBuffer.flip();//读写转换,用于后续对缓冲区的读取操作
 					//   limit = position;  position = 0;
 			        
 					byte[] bytes = new byte[readBuffer.remaining()];
-					readBuffer.get(bytes);
+					readBuffer.get(bytes);//将缓冲区可读的字节数组赋值到新创建的缓冲区当中去	
 					String body = new String(bytes,"UTF-8");
 					System.out.println("the time server receiver order: "+body);
-					String currentTime = "Query time order"
-							.equalsIgnoreCase(body) ? new java.util.Date(System.currentTimeMillis()).toString() : "Bad Order";
+					String currentTime = "QUERY TIME ORDER"
+							.equalsIgnoreCase(body) ? new java.util.Date(System.currentTimeMillis()).toString() : "BAD ORDER";
 							
 					doWrite(sc,currentTime);
 				}else if(readBytes <0 ){
@@ -114,15 +118,13 @@ public class MultiplexerTimeServer implements Runnable {
 		}
 	}
 
-	private void doWrite(SocketChannel channel, String response) throws Exception {
+	private void doWrite(SocketChannel channel, String response) throws Exception {//将消息发送给客户端
 		if(response!=null && response.trim().length()>0){
-			byte[] bytes = response.getBytes();
-			ByteBuffer writeBuffer = ByteBuffer.allocate(bytes.length);
-			writeBuffer.put(bytes);
+			byte[] bytes = response.getBytes();//将字符串变成字节数字
+			ByteBuffer writeBuffer = ByteBuffer.allocate(bytes.length);//根据字节数组的容量创建ByteBuffer
+			writeBuffer.put(bytes);//将字节数组复制到缓冲区中
 			writeBuffer.flip();
-			channel.write(writeBuffer);
-			
-			
+			channel.write(writeBuffer);//注意,因为是异步的操作他并不保证一次能把需要发送的字节数发送完成,也就是我们常说的写半包的问题
 		}
 		
 	}
