@@ -12,7 +12,7 @@ public class TimeServer {
 			}
 		}
 		
-		MultiplexerTimeServer timeServer = new MultiplexerTimeServer(port);
+		MultiplexerTimeServer timeServer = new MultiplexerTimeServer(port);//处理一个连接的Accptor线程
 		
 		new Thread(timeServer,"Nio-MultiplexerTimerServer-001").start();
 		

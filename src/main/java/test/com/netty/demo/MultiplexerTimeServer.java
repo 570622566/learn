@@ -20,8 +20,13 @@ public class MultiplexerTimeServer implements Runnable {
 	
 	public MultiplexerTimeServer(int port) {
 		try {
-			selector = Selector.open();
-			servChannel = ServerSocketChannel.open();
+			selector = Selector.open();//Opens a selector. 
+
+
+			servChannel = ServerSocketChannel.open();//Opens a server-socket channel. 
+			//The new channel's socket is initially unbound; 
+			//it must be bound to a specific address via one of its socket's bind methods before connections can be accepted. 
+				
 			servChannel.configureBlocking(false);//设置为异步
 			servChannel.socket().bind(new InetSocketAddress(port), 1024);
 			servChannel.register(selector, SelectionKey.OP_ACCEPT);//直接收连接的时间
@@ -40,7 +45,7 @@ public class MultiplexerTimeServer implements Runnable {
 	public void run() {
 		while(!stop){
 			try {
-				selector.select(1000);
+				selector.select(1000);//longtimeout  1000milliseconds
 				
 				Set<SelectionKey> selectedKeys = selector.selectedKeys();
 				Iterator<SelectionKey> it = selectedKeys.iterator();
