@@ -108,7 +108,11 @@ public class FtpUtil {
 			ftp.changeWorkingDirectory(directory);
 			FTPFile[] files = ftp.listFiles();
 			for (int i = 0; i < files.length; i++) {
-				System.out.println("得到文件:" + files[i].getName());
+				FTPFile ftpFile = 	files[i];
+				
+				System.out.println("parent:"+directory);
+				System.out.println("fileName:" + ftpFile.getName());
+				System.out.println("lastModify:"+ftpFile.getTimestamp().getTimeInMillis());
 				if (files[i].isFile()) {
 				} else if (files[i].isDirectory()) {
 					List(directory + files[i].getName() + "/");
