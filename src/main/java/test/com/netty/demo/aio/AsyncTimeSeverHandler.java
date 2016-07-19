@@ -28,8 +28,13 @@ public class AsyncTimeSeverHandler implements Runnable {
 	@Override
 	public void run() {
 		latch = new CountDownLatch(1);//完成一组正在执行的操作之前,允许当前线程一直阻塞.防止服务器执行完成退出
-		
 		doAccept();//接受客户端连接
+
+		try {
+		    latch.await();
+		} catch (InterruptedException e) {
+		    e.printStackTrace();
+		}
 		
 	}
 
