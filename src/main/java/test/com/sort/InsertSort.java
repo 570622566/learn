@@ -84,10 +84,9 @@ public class InsertSort {
 	 */
 	public static void selectSort() {
 		int a[] = { 1, 54, 6, 3, 78, 34, 12, 45 };
-		int position = 0;
-		for (int i = 0; i < a.length; i++) {
-
-			int j = i + 1;
+		int position = 0;//指针表示最小的位置
+		for (int i = 0; i < a.length; i++) {//i:表示有序区指针
+			int j = i + 1;//j:无序区的指针
 			position = i;
 			int temp = a[i];
 			for (; j < a.length; j++) {
@@ -103,6 +102,9 @@ public class InsertSort {
 			System.out.println(a[i]);
 	}
 	
+	/**
+	 * 求出最大值
+	 */
 	private static void getMax() {
 		// TODO Auto-generated method stub
 		int a[] = {2,5,7,3,4,1,0,-11,275687};
@@ -119,9 +121,9 @@ public class InsertSort {
 
 	public static void main(String[] args) {
 		// insertSort();
-		// shellSort();
+		 shellSort();
 		//selectSort();
-		getMax();
+		//getMax();
 	}
 
 	
