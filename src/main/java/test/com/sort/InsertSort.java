@@ -14,16 +14,18 @@ public class InsertSort {
 	public static void insertSort() {
 		int a[] = { 49, 38, 65, 97, 76, 13, 27, 49, 78, 34, 12, 64, 5, 4, 62, 99, 98, 54, 56, 17, 18, 23, 34, 15, 35,
 				25, 53, 51 };
-		int temp;
-		for (int i = 1; i < a.length; i++) {
-			int j = i - 1;//j有序曲的指针
-			temp = a[i];
-			for (; j >= 0 && temp < a[j]; ) {
-				a[j + 1] = a[j]; // 将大于temp的值整体后移一个单位
-				j--;
-			}
-			a[j + 1] = temp;
+		
+		int tmp;
+		for(int i=1 ; i<a.length; i++){
+			 int j = i - 1;
+			 tmp = a[i];
+			 for(;j>=0 && a[j] > tmp; ){
+				 a[j+1] = a[j];
+				 j--;
+			 }
+			 a[j+1] = tmp;
 		}
+		
 		
 		for (int i = 0; i < a.length; i++)
 			System.out.println(a[i]);
@@ -82,7 +84,7 @@ public class InsertSort {
 
 	/**
 	 * 基本思想：在要排序的一组数中，选出最小的一个数与第一个位置的数交换；
-	 * 然后在剩下的数当中再找最小的与第二个位置的数交换，如此循环到倒数第二个数和最后一个数比较为止。 （2）实例：
+	 * 然后在剩下的数当中再找最小的与第二个位置的数交换，如此循环到倒数第二个数和最后一个数比较为止。 
 	 */
 	public static void selectSort() {
 		int a[] = { 1, 54, 6, 3, 78, 34, 12, 45 };
@@ -111,7 +113,7 @@ public class InsertSort {
 		// TODO Auto-generated method stub
 		int a[] = {2,5,7,3,4,1,0,-11,275687};
 		int temp = a[0];
-		for(int i = 1; i< a.length;i++){
+		for(int i = 0; i< a.length;i++){
 			if(temp < a[i]){
 				temp = a[i];
 			}
@@ -122,10 +124,10 @@ public class InsertSort {
 	}
 
 	public static void main(String[] args) {
-		 //insertSort();
+		//insertSort();
 		 //shellSort();
 		//selectSort();
-		//getMax();
+		 getMax();
 	}
 
 	

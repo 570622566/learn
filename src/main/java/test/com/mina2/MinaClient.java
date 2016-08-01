@@ -29,7 +29,9 @@ public class MinaClient {
 		connector.getFilterChain().addLast("logger", new LoggingFilter());
 		// 设置编码过滤器
 		//connector.getFilterChain().addLast("codec", new ProtocolCodecFilter(new MsgCodecFactory()));
-		connector.getFilterChain().addLast("codec",  new ProtocolCodecFilter( new TextLineCodecFactory( Charset.forName( "GBK" ))));  
+		TextLineCodecFactory  textLineCodecFactory= new TextLineCodecFactory(Charset.forName("GBK"));
+		textLineCodecFactory.setDecoderMaxLineLength(1024*10);
+		connector.getFilterChain().addLast("codec",  new ProtocolCodecFilter(textLineCodecFactory ));  
 		
 		 ClientKeepAliveFactoryImpl ckafi = new ClientKeepAliveFactoryImpl(); 
 		 KeepAliveFilter kaf = new KeepAliveFilter(ckafi, IdleStatus.READER_IDLE,KeepAliveRequestTimeoutHandler.CLOSE); 
@@ -54,7 +56,7 @@ public class MinaClient {
 		IoSession session = cf.getSession();
 		 for(int i=0;i<3;i++)
 		//session.write("020310&777D2E360CCF6222848BE2909E6DC8C5&CN=信息通信处测试 370202020202020202, OU=00, OU=00, O=10, L=00, L=02, S=37, C=CN&10.49.138.1750302");
-			 session.write("020341&{test41}0302");
+			 session.write("020337&370302");
 		session.getCloseFuture().awaitUninterruptibly(); // 等待连接断开
 		connector.dispose();
 		
