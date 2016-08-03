@@ -104,6 +104,35 @@ public class Interview {
 	        }
 	    }
 	   
+	   private static class StringExample1{
+	        String str = new String("good");
+	        char[] ch = {'a', 'b', 'c'};
+	        public void change(String str, char[] ch){
+	            str = "test ok";
+	            ch[0] = 'g';
+	        }
+
+	        public static void main(String[] args) {
+	            StringExample1 ex = new StringExample1();
+	            ex.change(ex.str, ex.ch);
+	            System.out.print(ex.str+" and ");
+	            System.out.print(ex.ch);
+	            System.out.println();
+	        }
+	    }
+	   
+	   private static class StringExample2{
+	        public static void change(String str){
+	            str = "welcome";
+	        }
+
+	        public static void main(String[] args) {
+	            String str = "1234";
+	            change(str);
+	            System.out.println(str);
+	        }
+	    }
+	   
 	   private static class HelloA{
 	        public HelloA(){
 	            System.out.println("HelloA");
