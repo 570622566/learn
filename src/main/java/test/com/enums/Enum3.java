@@ -17,7 +17,6 @@ public class Enum3 {
 		case MEDIUM:
 			System.out.println("a little hot");
 			break;
-		case HOT:
 		case FLAMING:
 			System.out.println("maybe too hot");
 			break;
