@@ -1,4 +1,4 @@
-package test.com.designpattern.structure;
+package test.com.designpattern.structure.static1;
 
 public class ProxySubject extends Subject {
 	
