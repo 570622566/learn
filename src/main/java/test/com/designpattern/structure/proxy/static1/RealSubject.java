@@ -1,4 +1,4 @@
-package test.com.designpattern.structure.static1;
+package test.com.designpattern.structure.proxy.static1;
 
 /**
  * 真实角色：实现了Subject的request()方法
