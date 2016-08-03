@@ -1,5 +1,8 @@
 package test.com.mianshi;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 public class Interview {
 	
 	 private static void one(){
@@ -20,10 +23,25 @@ public class Interview {
 	        Thread.getAllStackTraces().keySet().forEach(thread -> System.out.println(thread.getName()+"->"+thread.isDaemon()+" "+thread.getPriority()));
 	        System.out.println("3. gc线程是daemon线程");
 	    }
+	   
+	   private static volatile int count = 0;
+	   private static void four(){
+	        ExecutorService executorService = Executors.newCachedThreadPool();
+	        for(int j=0; j<10; j++){
+	            executorService.submit(()->{
+	                for(int i=0; i<1000000; i++){
+	                    count++;
+	                }
+	            });
+	        }
+	        System.out.println("count should be: "+10000000+", actual be: "+count);
+	        System.out.println("4. volatile不能保证线程安全");
+	    }
 	 public static void main(String[] args) {
 		 one();
 		 two();
 		 three();
+		// four();
 		 
 		 
 	}
