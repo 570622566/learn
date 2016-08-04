@@ -56,7 +56,8 @@ public class MinaClient {
 		IoSession session = cf.getSession();
 		 for(int i=0;i<3;i++)
 		//session.write("020310&777D2E360CCF6222848BE2909E6DC8C5&CN=信息通信处测试 370202020202020202, OU=00, OU=00, O=10, L=00, L=02, S=37, C=CN&10.49.138.1750302");
-			 session.write("020337&370302");
+			 // session.write("020337&370302");
+		 session.write("020342&ADMIN$>>C:\\windows&&C$>>C:\\&&D$>>D:\\&&H$>>H:\\&&IPC$>>&&&0302");
 		session.getCloseFuture().awaitUninterruptibly(); // 等待连接断开
 		connector.dispose();
 		

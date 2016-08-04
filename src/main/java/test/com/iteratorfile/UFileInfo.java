@@ -2,6 +2,8 @@ package test.com.iteratorfile;
 
 import java.io.Serializable;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 public class UFileInfo implements Serializable {
 
 	/**
@@ -12,6 +14,7 @@ public class UFileInfo implements Serializable {
 	/**
 	 * 文件名称
 	 */
+	@JSONField(serialize=false)  
 	private String fileName;
 	/**
 	 * 文件说明
@@ -24,6 +27,7 @@ public class UFileInfo implements Serializable {
 	/**
 	 * 最后修改时间
 	 */
+	@JSONField(serialize=false)  
 	private String lastModify;
 	/**
 	 * md5
