@@ -69,10 +69,11 @@
 
 		<!-- http://mvnrepository.com/artifact/commons-net/commons-net -->
 		<dependency>
-			<groupId>commons-net</groupId>
-			<artifactId>commons-net</artifactId>
-			<version>3.3</version>
+		    <groupId>commons-net</groupId>
+		    <artifactId>commons-net</artifactId>
+		    <version>3.5</version>
 		</dependency>
+
 
 
 		<!-- http://mvnrepository.com/artifact/com.google.guava/guava -->
@@ -84,7 +85,6 @@
 
 
 		<!-- http://mvnrepository.com/artifact/io.netty/netty-all -->
-		<!-- https://mvnrepository.com/artifact/io.netty/netty-all -->
 		<dependency>
 			<groupId>io.netty</groupId>
 			<artifactId>netty-all</artifactId>
@@ -186,7 +186,14 @@
 		    <version>3.4.1</version>
 		</dependency>
 		
-		
+<!-- https://mvnrepository.com/artifact/org.snmp4j/snmp4j -->
+
+		<dependency>
+		    <groupId>org.snmp4j</groupId>
+		    <artifactId>snmp4j</artifactId>
+		    <version>2.5.0</version>
+		</dependency>	
+				
 		<dependency>
 			<groupId>org.testng</groupId>
 			<artifactId>testng</artifactId>
