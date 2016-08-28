@@ -1,11 +1,14 @@
 package test.com.mina2;
 
 import java.net.InetSocketAddress;
+import java.util.concurrent.ExecutorService;
 
 import org.apache.mina.core.service.IoAcceptor;
 import org.apache.mina.core.session.IdleStatus;
 import org.apache.mina.core.session.IoSession;
 import org.apache.mina.filter.codec.ProtocolCodecFilter;
+import org.apache.mina.filter.executor.ExecutorFilter;
+import org.apache.mina.filter.executor.OrderedThreadPoolExecutor;
 import org.apache.mina.filter.keepalive.KeepAliveFilter;
 import org.apache.mina.filter.keepalive.KeepAliveMessageFactory;
 import org.apache.mina.filter.keepalive.KeepAliveRequestTimeoutHandler;
@@ -32,6 +35,7 @@ public class MinaServer {
 	private static final String HEARTBEATRESPONSE = "0x12";
 	private static final Logger LOG = LoggerFactory.getLogger(MinaServer.class);
     private static IoAcceptor acceptor = new NioSocketAcceptor(); // 创建非阻塞的socket传输Acceptor
+    private static ExecutorService executor = new OrderedThreadPoolExecutor();
 
 	
 	public static IoAcceptor getInstance(){
@@ -59,10 +63,11 @@ public class MinaServer {
 
 		// 设置日志记录器
 		acceptor.getFilterChain().addLast("logger", lf);
-
+		
 		// 设置编码过滤器
 		acceptor.getFilterChain().addLast("codec", new ProtocolCodecFilter(new MsgCodecFactory()));
 		// acceptor.getFilterChain().addLast("codec",new ProtocolCodecFilter(new TextLineCodecFactory(Charset.forName("UTF-8"))));
+		acceptor.getFilterChain().addLast("executor", new ExecutorFilter(executor));
 
 		KeepAliveMessageFactory heartBeatFactory = new KeepAliveMessageFactoryImpl();
 		KeepAliveRequestTimeoutHandler heartBeatHandler = new KeepAliveRequestTimeoutHandlerImpl();
