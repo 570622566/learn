@@ -173,12 +173,6 @@
 			<classifier>jdk15</classifier>
 		</dependency>
 		
-		<dependency>
-			 <groupId>com.microsoft.sqlserver</groupId>
- 			 <artifactId>sqljdbc4</artifactId>
-  				<version>4.0</version>
-		</dependency>
-		
 		<!-- https://mvnrepository.com/artifact/org.mybatis/mybatis -->
 		<dependency>
 		    <groupId>org.mybatis</groupId>
