@@ -36,7 +36,20 @@
 			<artifactId>jedis</artifactId>
 			<version>2.8.1</version>
 		</dependency>
-
+	
+		<dependency>
+			<groupId>org.apache.xmlbeans</groupId>
+			<artifactId>xmlbeans</artifactId>
+			<version>2.3.0</version>
+		</dependency>
+		
+		
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml-schemas</artifactId>
+			<version>3.10.1</version>
+		
+		</dependency>
 
 		<!-- logback+slf4j -->
 		<dependency>
@@ -206,6 +219,12 @@
 			<groupId>org.apache.zookeeper</groupId>
 			<artifactId>zookeeper</artifactId>
 			<version>3.4.6</version>
+		</dependency>
+		
+		<dependency>
+		  <groupId>org.apache.thrift</groupId>
+		  <artifactId>libthrift</artifactId>
+		  <version>0.10.0</version>
 		</dependency>
 
 	</dependencies>
