@@ -95,7 +95,13 @@
 			<artifactId>guava</artifactId>
 			<version>19.0</version>
 		</dependency>
-
+		
+		<dependency>  
+		    <groupId>org.slf4j</groupId>  
+		    <artifactId>slf4j-log4j12</artifactId>  
+		    <version>1.7.2</version>  
+		</dependency>  
+		
 
 		<!-- http://mvnrepository.com/artifact/io.netty/netty-all -->
 		<dependency>
@@ -214,7 +220,21 @@
 			<artifactId>junit</artifactId>
 			<version>4.12</version>
 		</dependency>
-
+	
+		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-compress -->
+		<dependency>
+		    <groupId>org.apache.commons</groupId>
+		    <artifactId>commons-compress</artifactId>
+		    <version>1.13</version>
+		</dependency>
+				
+		<!-- https://mvnrepository.com/artifact/org.apache.ant/ant -->
+		<dependency>
+		    <groupId>org.apache.ant</groupId>
+		    <artifactId>ant</artifactId>
+		    <version>1.8.2</version>
+		</dependency>
+				
 		<dependency>
 			<groupId>org.apache.zookeeper</groupId>
 			<artifactId>zookeeper</artifactId>
