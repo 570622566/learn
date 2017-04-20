@@ -4,8 +4,6 @@ import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.collections.map.LinkedMap;
 import org.apache.commons.collections.map.MultiKeyMap;
 
-import java.lang.reflect.InvocationTargetException;
-
 /**
  * Created by Administrator on 2017/4/20.
  */
@@ -24,7 +22,18 @@ public class MultiKeyMapApache {
         System.out.println(map.get("02","male","china","master"));
         System.out.println(map.get("02","male","china"));
 
+        MultiKeyMapApache.Student student3 = new MultiKeyMapApache().new Student();
 
+
+        /**
+         * 属性copy但是暂时不好用...
+         */
+        try {
+           BeanUtils.copyProperties(student3,student2);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println(student3);
 
     }
 
@@ -60,6 +69,9 @@ public class MultiKeyMapApache {
                     "name='" + name + '\'' +
                     ", age=" + age +
                     '}';
+        }
+
+        public Student() {
         }
     }
 
