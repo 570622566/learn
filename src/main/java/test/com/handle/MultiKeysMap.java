@@ -1,8 +1,6 @@
 package test.com.handle;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.ListMultimap;
@@ -20,13 +18,23 @@ public class MultiKeysMap {
         
         multimap.put("hehe", "test");
         multimap.put("hehe", "test1");
-        
+
         List<String> list = multimap.get("hehe");
-        
+
         for (String s : list) {
-			System.out.println(s);
-		}
-        
+            System.out.println(s);
+        }
+
+        ListMultimap<String,List<String>> multimap2 = ArrayListMultimap.create();
+        multimap2.put("1", Arrays.asList("1,2,3,4".split(",")));
+        multimap2.put("2", Arrays.asList("5,6,7,8,91,32".split(",")));
+
+        Set<String> keys = multimap2.keySet();
+        for (String s : keys) {
+            System.out.println("key:"+s);
+            System.out.println(multimap2.get(s));
+        }
+
         Map<String,String> map = new HashMap<String,String>();
         map.put("hehe", "test2");
         map.put("hehe", "test3");
