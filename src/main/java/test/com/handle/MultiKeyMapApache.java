@@ -1,7 +1,10 @@
 package test.com.handle;
 
+import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.collections.map.LinkedMap;
 import org.apache.commons.collections.map.MultiKeyMap;
+
+import java.lang.reflect.InvocationTargetException;
 
 /**
  * Created by Administrator on 2017/4/20.
@@ -20,6 +23,8 @@ public class MultiKeyMapApache {
         System.out.println(map.get("01","female","china","bachelor"));
         System.out.println(map.get("02","male","china","master"));
         System.out.println(map.get("02","male","china"));
+
+
 
     }
 
