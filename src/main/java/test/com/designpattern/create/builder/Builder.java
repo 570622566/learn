@@ -16,7 +16,7 @@ public class Builder {
          for(int i=0; i<count; i++){
                  list.add(new MailSender());
          }
- }
+	 }
 	 
 	 
 	  public void produceSmsSender(int count){

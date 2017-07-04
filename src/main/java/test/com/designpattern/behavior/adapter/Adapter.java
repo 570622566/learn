@@ -1,7 +1,8 @@
 package test.com.designpattern.behavior.adapter;
 
 public class Adapter {
-	 private Adaptee adaptee;
+	
+		private Adaptee adaptee;
 	    
 	    public Adapter(Adaptee adaptee){
 	        this.adaptee = adaptee;
