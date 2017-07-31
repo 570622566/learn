@@ -18,9 +18,9 @@ public class Client {
             transport.open();
             TProtocol protocol = new TBinaryProtocol(transport);
             TestService.Client client = new TestService.Client(protocol);
-
-            String result = client.getStruct(123, "test");
-            System.out.println(result);
+            System.out.println(client);
+         /*   String result = client.getStruct(123, "test");
+            System.out.println(result);*/
             transport.close();
         } catch (TTransportException e) {
             e.printStackTrace();

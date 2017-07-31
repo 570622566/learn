@@ -22,6 +22,7 @@ public class MinaShortClientHandler implements IoHandler{
 	public void messageReceived(IoSession session, Object message) {
 		logger.info("Message received in the client..");
 		logger.info("Message is: " + message.toString());
+		System.out.println("server response:"+message);
 //		session.close(true);
 	}
 

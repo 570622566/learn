@@ -1,6 +1,18 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 	<profiles>
 		<profile>
 			<id>jdk18</id>
@@ -16,12 +28,12 @@
 		</profile>
 	</profiles>
 
-	<groupId>test</groupId>
-	<artifactId>com.test</artifactId>
+	<groupId>com.test</groupId>
+	<artifactId>learn</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>com.test</name>
+	<name>learn</name>
 	<url>http://maven.apache.org</url>
 
 	<properties>
@@ -106,8 +118,13 @@
 		    <groupId>org.slf4j</groupId>  
 		    <artifactId>slf4j-log4j12</artifactId>  
 		    <version>1.7.2</version>  
-		</dependency>  
-		
+		</dependency>
+
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.9</version>
+		</dependency>
 
 		<!-- http://mvnrepository.com/artifact/io.netty/netty-all -->
 		<dependency>
@@ -304,6 +321,50 @@
 			<version>0.10.0</version>
 		</dependency>
 
-	</dependencies>
+		<!-- https://mvnrepository.com/artifact/cn.wanghaomiao/JsoupXpath -->
+		<dependency>
+			<groupId>cn.wanghaomiao</groupId>
+			<artifactId>JsoupXpath</artifactId>
+			<version>0.3.2</version>
+		</dependency>
+
+
+		<dependency>
+			<groupId>net.sourceforge.htmlcleaner</groupId>
+			<artifactId>htmlcleaner</artifactId>
+			<version>2.6</version>
+		</dependency>
+
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.39</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jooq</groupId>
+			<artifactId>jooq</artifactId>
+			<version>3.9.3</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jooq</groupId>
+			<artifactId>jooq-meta</artifactId>
+			<version>3.9.3</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jooq</groupId>
+			<artifactId>jooq-codegen</artifactId>
+			<version>3.9.3</version>
+		</dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.redisson/redisson -->
+        <dependency>
+            <groupId>org.redisson</groupId>
+            <artifactId>redisson</artifactId>
+            <version>3.5.0</version>
+        </dependency>
+
+    </dependencies>
+
 </project>
 

@@ -14,7 +14,8 @@ public class Server {
     public static void main(String[] args) {
 
         try {
-            TestService.Processor processor = new TestService.Processor(new TestServiceHandler());
+            @SuppressWarnings("rawtypes")
+			TestService.Processor processor = new TestService.Processor(new TestServiceHandler());
 
             TServerTransport serverTransport = new TServerSocket(9090);
             TServer server = new TSimpleServer(new TServer.Args(serverTransport).processor(processor));

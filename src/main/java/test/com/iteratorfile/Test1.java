@@ -5,7 +5,7 @@ import java.io.File;
 public class Test1 {
 	public static void main(String[] args) throws Exception {
 		
-		File currentDir = new File("E:\\Test");
+		File currentDir = new File("E:\\ykj");
         displayDirectoryContents(currentDir);
 
 		
