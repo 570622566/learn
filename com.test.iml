@@ -33,6 +33,9 @@
     <orderEntry type="library" name="Maven: commons-codec:commons-codec:1.4" level="project" />
     <orderEntry type="library" name="Maven: org.codehaus.jackson:jackson-mapper-asl:1.9.4" level="project" />
     <orderEntry type="library" name="Maven: org.codehaus.jackson:jackson-core-asl:1.9.4" level="project" />
+    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-core:2.1.0" level="project" />
+    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.1.0" level="project" />
+    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.1.0" level="project" />
     <orderEntry type="library" name="Maven: org.apache.camel:camel-mina2:2.17.1" level="project" />
     <orderEntry type="library" name="Maven: org.apache.camel:camel-core:2.17.1" level="project" />
     <orderEntry type="library" name="Maven: com.sun.xml.bind:jaxb-core:2.2.11" level="project" />
@@ -84,24 +87,17 @@
     <orderEntry type="library" name="Maven: org.jooq:jooq:3.9.3" level="project" />
     <orderEntry type="library" name="Maven: org.jooq:jooq-meta:3.9.3" level="project" />
     <orderEntry type="library" name="Maven: org.jooq:jooq-codegen:3.9.3" level="project" />
-    <orderEntry type="library" name="Maven: org.redisson:redisson:3.5.0" level="project" />
-    <orderEntry type="library" name="Maven: io.netty:netty-common:4.1.13.Final" level="project" />
-    <orderEntry type="library" name="Maven: io.netty:netty-codec:4.1.13.Final" level="project" />
-    <orderEntry type="library" name="Maven: io.netty:netty-transport:4.1.13.Final" level="project" />
-    <orderEntry type="library" name="Maven: io.netty:netty-buffer:4.1.13.Final" level="project" />
-    <orderEntry type="library" name="Maven: io.netty:netty-resolver:4.1.13.Final" level="project" />
-    <orderEntry type="library" name="Maven: io.netty:netty-handler:4.1.13.Final" level="project" />
+    <orderEntry type="library" name="Maven: org.redisson:redisson:3.4.0" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty-common:4.1.8.Final" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty-codec:4.1.8.Final" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty-transport:4.1.8.Final" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty-buffer:4.1.8.Final" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty-resolver:4.1.8.Final" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty-handler:4.1.8.Final" level="project" />
     <orderEntry type="library" name="Maven: javax.cache:cache-api:1.0.0" level="project" />
     <orderEntry type="library" name="Maven: io.projectreactor:reactor-stream:2.0.8.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: io.projectreactor:reactor-core:2.0.8.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.reactivestreams:reactive-streams:1.0.0" level="project" />
-    <orderEntry type="library" name="Maven: com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.7.9" level="project" />
-    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-core:2.7.9" level="project" />
-    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.7.9" level="project" />
-    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.7.0" level="project" />
-    <orderEntry type="library" name="Maven: net.openhft:zero-allocation-hashing:0.8" level="project" />
-    <orderEntry type="library" name="Maven: net.bytebuddy:byte-buddy:1.6.14" level="project" />
-    <orderEntry type="library" name="Maven: org.jodd:jodd-bean:3.7.1" level="project" />
-    <orderEntry type="library" name="Maven: org.jodd:jodd-core:3.7.1" level="project" />
+    <orderEntry type="library" name="Maven: com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.6.7" level="project" />
   </component>
 </module>
