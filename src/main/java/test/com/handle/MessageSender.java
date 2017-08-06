@@ -15,7 +15,7 @@ public class MessageSender {
     public static final String BROKER_URL = "tcp://localhost:61616";
 
     // 目标，在ActiveMQ管理员控制台创建 http://localhost:8161/admin/queues.jsp
-    public static final String DESTINATION = "hoo.mq.queue";
+    public static final String DESTINATION = "guoshuai.mq.queue";
 
 
     /**
