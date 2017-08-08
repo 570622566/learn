@@ -379,8 +379,13 @@
             <artifactId>redisson</artifactId>
             <version>3.4.0</version>
         </dependency>
+		<dependency>
+			<groupId>org.opensymphony.quartz</groupId>
+			<artifactId>quartz</artifactId>
+			<version>1.6.1</version>
+		</dependency>
 
-    </dependencies>
+	</dependencies>
 
 </project>
 
