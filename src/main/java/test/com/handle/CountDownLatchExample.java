@@ -1,7 +1,6 @@
 package test.com.handle;
 
 import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.TimeUnit;
 
 /**
  *  CountDownLatch 实现一个等待机制，在诸如 等待与会者到达后，开始会议的使用中。ConutDownLatch 在初始化中一个计数器，用来指定需要等待的个数。在并发编程中，所解决的需求就是，等待所有的线程到达某个点后。才开始进行下一步，有点类似于开会，只有当所有的与会人员都到齐后，会议才能开始
