@@ -268,12 +268,14 @@ public class QuartzManager implements Job {
 //            QuartzManager.modifyJobTime(job_name,"0/10 * * * * ?");
 //            Thread.sleep(20000);
 //            System.out.println("【移除定时】");
-//            QuartzManager.removeJob(job_name);
+            	QuartzManager.removeJob(job_name);
 //            Thread.sleep(10000);
 //
 //            System.out.println("/n【添加定时任务】");
 //            QuartzManager.addJob(job_name,job,"0/5 * * * * ?");
-            QuartzManager.modifyJobTime(job_name,"0/10 * * * * ?");
+              //QuartzManager.modifyJobTime(job_name,"0/10 * * * * ?");
+            
+            
 
         }  catch (Exception e) {
             e.printStackTrace();
