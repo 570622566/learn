@@ -1,11 +1,16 @@
 package test.com.concurrent;
 
 import java.util.Random;
-import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.Future;
 import java.util.concurrent.RecursiveTask;
 
+/**
+ * 
+ * 下面以一个有返回值的大任务为例，介绍一下RecursiveTask的用法
+ * @author Administrator
+ *
+ */
 public class ForkJoinPoolTest2 {
 
 	public static void main(String[] args) throws Exception {
@@ -38,8 +43,8 @@ class SumTask extends RecursiveTask<Integer> {
   /**
 	 * 
 	 */
-	private static final long serialVersionUID = 8812707743077378568L;
-// 每个"小任务"最多只打印50个数  
+ private static final long serialVersionUID = 8812707743077378568L;
+// 每个"小任务"最多只打印20个数  
   private static final int MAX = 20;  
   private int arr[];  
   private int start;  
