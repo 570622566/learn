@@ -14,7 +14,8 @@ public class SimpleEnumUse {
 		
 		
 		for (Enum1 e : Enum1.values()) {
-			System.out.println(e + ".ordinal " + e.ordinal());
+			System.out.println(e + ".ordinal " + e.ordinal() );
+			
 		}
 		
 	}
