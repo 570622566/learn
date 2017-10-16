@@ -5,7 +5,12 @@ import java.util.concurrent.RecursiveAction;
 //RecursiveAction为ForkJoinTask的抽象子类，没有返回值的任务  
 public class PrintTask extends RecursiveAction {
 	
-	 // 每个"小任务"最多只打印50个数  
+	 /**
+	 * 
+	 */
+	private static final long serialVersionUID = 3925031773902591257L;
+
+	// 每个"小任务"最多只打印50个数  
     private static final int MAX = 50;  
 	
     private int start;  
