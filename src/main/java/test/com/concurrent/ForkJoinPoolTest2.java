@@ -8,6 +8,8 @@ import java.util.concurrent.RecursiveTask;
 /**
  * 
  * 下面以一个有返回值的大任务为例，介绍一下RecursiveTask的用法
+ * ForkJoinPool将任务分解了7次，程序通过SumTask计算出来的结果，和初始化数组时统计出来的总和是相等的，这表明计算结果一切正常。
+ *分成七个任务进行处理
  * @author Administrator
  *
  */
