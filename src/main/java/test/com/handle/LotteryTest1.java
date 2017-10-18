@@ -16,14 +16,18 @@ public static void main(String[] args) {
      awardStockMap.put("20", 30000);
      awardStockMap.put("T", 200);
      awardStockMap.put("D", 50);
+     
+	 final Map<String, Integer> awardStockMap1 = new ConcurrentHashMap<>(); 
+	 awardStockMap1.put("T", 200);
+	 awardStockMap1.put("D", 50);
      // 权重默认等于库存
      final Map<String, Integer> awardWeightMap = new ConcurrentHashMap<>(awardStockMap); 
-     final Map<String, Integer> initAwardStockMap = new ConcurrentHashMap<>(awardStockMap); 
+     final Map<String, Integer> initAwardStockMap = new ConcurrentHashMap<>(awardStockMap1); 
 
      int drawNum = 50780; // 理论可以抽完所有奖品所需抽奖次数 = 奖品数×中奖概率导数 = 7617*100/15
      Map<String, Integer> dailyWinCountMap = new ConcurrentHashMap<>(); // 每天实际中奖计数
 
-     for (int j = 0; j < 2000000; j++) { // 模拟每次抽奖
+     for (int j = 0; j < 200000; j++) { // 模拟每次抽奖
          //确定是否中奖
          
          //中奖 确定是哪个奖品
