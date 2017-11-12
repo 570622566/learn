@@ -23,7 +23,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="lib/aopalliance.jar"/>
-	<classpathentry kind="lib" path="lib/aspectjweaver.jar"/>
 	<classpathentry kind="lib" path="lib/com.springsource.net.sf.cglib-2.2.0.jar"/>
 	<classpathentry kind="lib" path="lib/commons-collections-3.2.1.jar"/>
 	<classpathentry kind="lib" path="lib/commons-dbcp.jar"/>
@@ -45,5 +44,7 @@
 	<classpathentry kind="lib" path="lib/mybatis-3.0.5-SNAPSHOT.jar"/>
 	<classpathentry kind="lib" path="lib/mybatis-spring-1.0.1-SNAPSHOT.jar"/>
 	<classpathentry kind="lib" path="lib/mysql-connector-java-5.1.6-bin.jar"/>
+	<classpathentry kind="lib" path="lib/aspectjrt-1.7.4.jar"/>
+	<classpathentry kind="lib" path="lib/aspectjweaver-1.7.4.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
