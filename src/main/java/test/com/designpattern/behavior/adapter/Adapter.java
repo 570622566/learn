@@ -1,6 +1,6 @@
 package test.com.designpattern.behavior.adapter;
 
-public class Adapter {
+public class Adapter  {
 	
 		private Adaptee adaptee;
 	    

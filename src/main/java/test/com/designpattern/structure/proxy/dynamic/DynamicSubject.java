@@ -30,7 +30,7 @@ public class DynamicSubject implements InvocationHandler {
 		  System.out.println("代理前执行的操作!");
 	        method.invoke(sub, args);
 	        System.out.println("代理后执行的操作!");
-	        return null;
+	        return sub;
 	}
 
 }
