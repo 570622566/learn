@@ -13,14 +13,14 @@ import org.springframework.stereotype.Component;
 
 @Aspect
 @Component
-@Order(3)  
-public class AopAspect {
+@Order(2)  
+public class AopAspect2 {
 	
 	/**
      * 定义一个切入点表达式,用来确定哪些类需要代理
      * execution(* aopdemo.*.*(..))代表aopdemo包下所有类的所有方法都会被代理
      */
-    @Pointcut(value="execution(* test.com.spring.TargetClass.joint(..))")    
+    @Pointcut(value="execution(* test.com.spring.TargetClass.shehuizhuyi(..))")    
     public void declareJoinPointerExpression() {}
     
     
@@ -62,7 +62,7 @@ public class AopAspect {
             //执行目标方法
             //result = pjd.proeed();
             //用新的参数值执行目标方法
-            result = pjd.proceed(new Object[]{"newSpring","newAop"});
+            result = pjd.proceed(new Object[]{"社会主义","资本主义"});
             //返回通知
             System.out.println("目标方法返回结果后...");
         } catch (Throwable e) {
